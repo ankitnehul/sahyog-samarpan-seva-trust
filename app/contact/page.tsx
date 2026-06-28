@@ -3,7 +3,7 @@ import ComingSoon from "@/components/ComingSoon";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Sahyog Samarpan Seva Trust.",
+  description: "Get in touch with Sahayog Samarpan Seva Trust.",
 };
 
 export default function ContactPage() {

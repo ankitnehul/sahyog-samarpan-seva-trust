@@ -4,7 +4,7 @@ import ComingSoon from "@/components/ComingSoon";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Photos and highlights from Sahyog Samarpan Seva Trust events and activities.",
+    "Photos and highlights from Sahayog Samarpan Seva Trust events and activities.",
 };
 
 export default function GalleryPage() {

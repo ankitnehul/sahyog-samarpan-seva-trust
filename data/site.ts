@@ -5,15 +5,15 @@ import type { SiteConfig } from "@/types";
  * Edit values here and they update everywhere (Navbar, Footer, metadata...).
  */
 export const siteConfig: SiteConfig = {
-  name: "Sahyog Samarpan Seva Trust",
-  nameMr: "सहयोग समर्पण सेवा ट्रस्ट",
-  shortName: "Sahyog Samarpan",
+  name: "Sahayog Samarpan Seva Trust",
+  nameMr: "सहायोग समर्पण सेवा ट्रस्ट",
+  shortName: "Sahayog Samarpan",
   taglineMr: "सेवा हेच कर्म",
   taglineEn: "Service is our Duty",
   establishedYear: 2016,
 
   description:
-    "Sahyog Samarpan Seva Trust is a non-profit organization dedicated to social welfare and humanitarian service — working in education, healthcare, sanitation, environment, women empowerment, child welfare and youth development for the needy and underprivileged.",
+    "Sahayog Samarpan Seva Trust is a non-profit organization dedicated to social welfare and humanitarian service — working in education, healthcare, sanitation, environment, women empowerment, child welfare and youth development for the needy and underprivileged.",
 
   logo: "/logo/logo.png",
 

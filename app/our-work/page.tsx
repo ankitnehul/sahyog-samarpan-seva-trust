@@ -4,7 +4,7 @@ import ComingSoon from "@/components/ComingSoon";
 export const metadata: Metadata = {
   title: "Our Work",
   description:
-    "Explore the social welfare programs and initiatives of Sahyog Samarpan Seva Trust.",
+    "Explore the social welfare programs and initiatives of Sahayog Samarpan Seva Trust.",
 };
 
 export default function OurWorkPage() {

@@ -3,7 +3,7 @@ import ComingSoon from "@/components/ComingSoon";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Sahyog Samarpan Seva Trust — our mission, vision and objectives.",
+  description: "Learn about Sahayog Samarpan Seva Trust — our mission, vision and objectives.",
 };
 
 export default function AboutPage() {
