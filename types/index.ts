@@ -106,6 +106,7 @@ export interface UpcomingEvent {
   /** Optional date label, e.g. "Coming soon" or "15 July 2026". */
   dateLabel?: string;
   description: string;
+  descriptionMr?: string;
 }
 
 /** Top-level configuration for the entire site. */

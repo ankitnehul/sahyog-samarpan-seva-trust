@@ -77,6 +77,11 @@ export default function Home() {
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
                 {event.description}
               </p>
+              {event.descriptionMr && (
+                <p className="font-marathi mt-2 text-sm leading-relaxed text-gray-600">
+                  {event.descriptionMr}
+                </p>
+              )}
             </article>
           ))}
         </div>
