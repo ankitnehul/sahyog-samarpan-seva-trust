@@ -36,22 +36,16 @@ export interface ContactInfo {
   state: string;
 }
 
-/** A bilingual titled block on the About page. */
+/** A titled block on the About page. */
 export interface AboutSection {
-  /** Common heading shown in English. */
   title: string;
-  /** Same heading in Marathi (shown alongside the English heading). */
-  titleMr: string;
   paragraphs?: string[];
-  paragraphsMr?: string[];
   bullets?: string[];
-  bulletsMr?: string[];
 }
 
-/** Bilingual About page content. */
+/** About page content (single language). */
 export interface AboutContent {
   intro: string;
-  introMr: string;
   sections: AboutSection[];
 }
 

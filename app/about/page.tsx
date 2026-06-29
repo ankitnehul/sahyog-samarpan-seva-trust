@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { AboutSections } from "@/components/AboutSections";
-import { about } from "@/data/about";
+import { aboutEn, aboutMr } from "@/data/about";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -51,9 +51,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Bilingual content */}
+      {/* English content */}
       <section className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8">
-        <AboutSections content={about} />
+        <AboutSections content={aboutEn} />
+      </section>
+
+      {/* Marathi content */}
+      <section className="bg-brand-cream py-14">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <AboutSections content={aboutMr} marathi />
+        </div>
       </section>
 
       {/* CTA */}
