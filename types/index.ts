@@ -61,6 +61,26 @@ export interface TeamGroup {
   members: TeamMember[];
 }
 
+/** A single event / activity shown on the "Our Work" page. */
+export interface WorkEvent {
+  /** Stable id used as a React key and anchor. */
+  id: string;
+  /** English heading, e.g. "Maharashtra Day Initiative". */
+  title: string;
+  /** Optional Marathi heading. */
+  titleMr?: string;
+  /** ISO date (YYYY-MM-DD) used for sorting newest-first. */
+  date: string;
+  /** Human-friendly date label, e.g. "1 May 2026". */
+  dateLabel: string;
+  /** Optional place where the activity happened. */
+  location?: string;
+  /** Photo path under /public, e.g. "/images/our-work/...". */
+  photo: string;
+  /** Body paragraphs (Marathi), rendered in order. */
+  description: string[];
+}
+
 /** Top-level configuration for the entire site. */
 export interface SiteConfig {
   name: string;
