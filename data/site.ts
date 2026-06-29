@@ -32,6 +32,7 @@ export const siteConfig: SiteConfig = {
     phone: "",
     email: "",
     whatsapp: "",
+    whatsappCommunity: "https://chat.whatsapp.com/Bpv1zVCfabT9pkV5jLoGNo",
     addressLine: "",
     city: "Ahilyanagar",
     state: "Maharashtra",
@@ -43,7 +44,7 @@ export const siteConfig: SiteConfig = {
     { platform: "facebook", label: "Facebook", href: "" },
     { platform: "youtube", label: "YouTube", href: "" },
     { platform: "linkedin", label: "LinkedIn", href: "" },
-    { platform: "whatsapp", label: "WhatsApp", href: "" },
+    { platform: "whatsapp", label: "WhatsApp", href: "https://chat.whatsapp.com/Bpv1zVCfabT9pkV5jLoGNo" },
   ],
 
   donationStatus: "coming-soon",

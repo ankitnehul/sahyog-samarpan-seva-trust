@@ -29,9 +29,24 @@ export interface ContactInfo {
   phone: string;
   email: string;
   whatsapp: string;
+  /** WhatsApp community invite link. */
+  whatsappCommunity?: string;
   addressLine: string;
   city: string;
   state: string;
+}
+
+/** A titled block on the About page. */
+export interface AboutSection {
+  title: string;
+  paragraphs?: string[];
+  bullets?: string[];
+}
+
+/** Bilingual About page content. */
+export interface AboutContent {
+  intro: string;
+  sections: AboutSection[];
 }
 
 /** Donation availability state. */
