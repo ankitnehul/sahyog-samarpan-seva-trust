@@ -96,6 +96,18 @@ export interface WorkEvent {
   description: string[];
 }
 
+/** An upcoming (planned) event shown on the homepage. */
+export interface UpcomingEvent {
+  id: string;
+  title: string;
+  titleMr?: string;
+  /** Optional place where it will be held. */
+  location?: string;
+  /** Optional date label, e.g. "Coming soon" or "15 July 2026". */
+  dateLabel?: string;
+  description: string;
+}
+
 /** Top-level configuration for the entire site. */
 export interface SiteConfig {
   name: string;
