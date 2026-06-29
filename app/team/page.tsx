@@ -5,7 +5,7 @@ import { managingCommittee, projectTeams } from "@/data/team";
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet the Managing Committee and project heads of Sahayog Samarpan Seva Trust.",
+    "Meet the Managing Committee and project heads of Sahayog Samarpan Seva Foundation.",
 };
 
 export default function TeamPage() {
@@ -19,7 +19,7 @@ export default function TeamPage() {
             Our Team
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-white/70">
-            The dedicated people leading Sahayog Samarpan Seva Trust and driving
+            The dedicated people leading Sahayog Samarpan Seva Foundation and driving
             our work across education, health, sports and outreach.
           </p>
         </div>

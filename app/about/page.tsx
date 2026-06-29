@@ -8,7 +8,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Sahayog Samarpan Seva Trust — our mission, objectives, journey and commitment to social welfare in Ahilyanagar, Maharashtra.",
+    "Learn about Sahayog Samarpan Seva Foundation — our mission, objectives, journey and commitment to social welfare in Ahilyanagar, Maharashtra.",
 };
 
 export default function AboutPage() {

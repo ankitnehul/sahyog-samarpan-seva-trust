@@ -5,19 +5,18 @@ import type { SiteConfig } from "@/types";
  * Edit values here and they update everywhere (Navbar, Footer, metadata...).
  */
 export const siteConfig: SiteConfig = {
-  name: "Sahayog Samarpan Seva Trust",
-  nameMr: "सहायोग समर्पण सेवा ट्रस्ट",
+  name: "Sahayog Samarpan Seva Foundation",
+  nameMr: "सहायोग समर्पण सेवा फाउंडेशन",
   shortName: "Sahayog Samarpan",
   taglineMr: "सेवा हेच कर्म",
   taglineEn: "Service is our Duty",
   establishedYear: 2016,
 
   description:
-    "Sahayog Samarpan Seva Trust is a non-profit organization dedicated to social welfare and humanitarian service — working in education, healthcare, sanitation, environment, women empowerment, child welfare and youth development for the needy and underprivileged.",
+    "Sahayog Samarpan Seva Foundation is a non-profit organization dedicated to social welfare and humanitarian service — working in education, healthcare, sanitation, environment, women empowerment, child welfare and youth development for the needy and underprivileged.",
 
   logo: "/logo/logo.png",
 
-  // Primary navigation. Folders under app/ will match these hrefs in Phase 4.
   nav: [
     { label: "Home", labelMr: "मुख्यपृष्ठ", href: "/" },
     { label: "About Us", labelMr: "आमच्याबद्दल", href: "/about" },
@@ -27,24 +26,37 @@ export const siteConfig: SiteConfig = {
     { label: "Contact", labelMr: "संपर्क", href: "/contact" },
   ],
 
-  // Left blank intentionally — will be filled when the client shares details.
   contact: {
-    phone: "",
-    email: "",
+    email: "sahayogsamarpanseva@gmail.com",
     whatsapp: "",
     whatsappCommunity: "https://chat.whatsapp.com/Bpv1zVCfabT9pkV5jLoGNo",
     addressLine: "",
     city: "Ahilyanagar",
     state: "Maharashtra",
+    contacts: [
+      { name: "Shubham Madake", phone: "+91 8805566365" },
+      { name: "Rohit Bhojane", phone: "+91 7350969468" },
+    ],
   },
 
-  // Placeholders: hrefs empty until links are provided. Rendered as "coming soon".
   social: [
-    { platform: "instagram", label: "Instagram", href: "" },
+    {
+      platform: "instagram",
+      label: "Instagram",
+      href: "https://www.instagram.com/sahayogsamarpan?igsh=MXduNHcyMzZseTA1Mw==",
+    },
     { platform: "facebook", label: "Facebook", href: "" },
     { platform: "youtube", label: "YouTube", href: "" },
-    { platform: "linkedin", label: "LinkedIn", href: "" },
-    { platform: "whatsapp", label: "WhatsApp", href: "https://chat.whatsapp.com/Bpv1zVCfabT9pkV5jLoGNo" },
+    {
+      platform: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/sahyog-samarpan-seva-foundation/",
+    },
+    {
+      platform: "whatsapp",
+      label: "WhatsApp",
+      href: "https://chat.whatsapp.com/Bpv1zVCfabT9pkV5jLoGNo",
+    },
   ],
 
   donationStatus: "coming-soon",

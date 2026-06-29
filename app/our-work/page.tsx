@@ -5,7 +5,7 @@ import { workEvents } from "@/data/events";
 export const metadata: Metadata = {
   title: "Our Work",
   description:
-    "Social welfare activities and initiatives by Sahayog Samarpan Seva Trust — Diwali celebrations, Maharashtra Day seva and more.",
+    "Social welfare activities and initiatives by Sahayog Samarpan Seva Foundation — Diwali celebrations, Maharashtra Day seva and more.",
 };
 
 export default function OurWorkPage() {
@@ -20,7 +20,7 @@ export default function OurWorkPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-white/70">
             A glimpse of the activities and seva carried out by Sahayog Samarpan
-            Seva Trust — serving the community, one initiative at a time.
+            Seva Foundation — serving the community, one initiative at a time.
           </p>
         </div>
       </section>

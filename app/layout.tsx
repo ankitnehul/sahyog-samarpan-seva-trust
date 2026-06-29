@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     "NGO",
-    "Sahayog Samarpan Seva Trust",
+    "Sahayog Samarpan Seva Foundation",
     "Ahilyanagar",
     "Maharashtra",
     "social work",

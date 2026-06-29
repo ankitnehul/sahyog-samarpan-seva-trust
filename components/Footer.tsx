@@ -105,19 +105,26 @@ export default function Footer() {
                 {contact.city}, {contact.state}
               </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Phone className="h-4 w-4 shrink-0 text-brand-saffron" />
-              <span>{contact.phone || "Coming soon"}</span>
+            <li className="flex items-start gap-2">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-saffron" />
+              <span>
+                {contact.contacts.map((c) => c.phone).join(" / ")}
+              </span>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 shrink-0 text-brand-saffron" />
-              <span>{contact.email || "Coming soon"}</span>
+              <a
+                href={`mailto:${contact.email}`}
+                className="transition-colors hover:text-white"
+              >
+                {contact.email}
+              </a>
             </li>
           </ul>
 
           <div className="mt-5">
             <p className="mb-2 text-xs uppercase tracking-wider text-white/50">
-              Follow us (coming soon)
+              Follow us
             </p>
             <div className="flex gap-2">
               {siteConfig.social.map((s) => {

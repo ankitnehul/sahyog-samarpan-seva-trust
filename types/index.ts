@@ -24,9 +24,14 @@ export interface SocialLink {
   href: string;
 }
 
-/** Official contact details. Left blank for now, filled later. */
-export interface ContactInfo {
+/** A named contact person with phone number. */
+export interface ContactPerson {
+  name: string;
   phone: string;
+}
+
+/** Official contact details. */
+export interface ContactInfo {
   email: string;
   whatsapp: string;
   /** WhatsApp community invite link. */
@@ -34,6 +39,7 @@ export interface ContactInfo {
   addressLine: string;
   city: string;
   state: string;
+  contacts: ContactPerson[];
 }
 
 /** A titled block on the About page. */
@@ -107,6 +113,15 @@ export interface UpcomingEvent {
   dateLabel?: string;
   description: string;
   descriptionMr?: string;
+}
+
+/** A single gallery image. */
+export interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  caption?: string;
+  captionMr?: string;
 }
 
 /** Top-level configuration for the entire site. */

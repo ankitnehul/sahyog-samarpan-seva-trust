@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa6";
+import {
+  FaWhatsapp,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa6";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Sahayog Samarpan Seva Trust.",
+  description: "Get in touch with Sahayog Samarpan Seva Foundation.",
 };
 
 export default function ContactPage() {
-  const { contact } = siteConfig;
+  const { contact, social } = siteConfig;
   const whatsappCommunity = contact.whatsappCommunity;
+  const instagram = social.find((s) => s.platform === "instagram");
+  const linkedin = social.find((s) => s.platform === "linkedin");
 
   return (
     <div className="bg-white">
-      {/* Page header */}
       <section className="bg-brand-navy py-16 text-center text-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <p className="font-marathi text-brand-gold">संपर्क</p>
@@ -22,7 +27,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-white/70">
-            Reach out to Sahayog Samarpan Seva Trust or join our WhatsApp
+            Reach out to Sahayog Samarpan Seva Foundation or join our WhatsApp
             community to stay connected with our seva activities.
           </p>
         </div>
@@ -30,7 +35,6 @@ export default function ContactPage() {
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="space-y-6">
-          {/* WhatsApp Community — primary CTA */}
           {whatsappCommunity && (
             <div className="rounded-2xl border border-brand-green/20 bg-brand-cream p-6 sm:p-8">
               <div className="flex items-start gap-4">
@@ -46,8 +50,7 @@ export default function ContactPage() {
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-gray-600">
                     Join our WhatsApp community to receive updates about events,
-                    seva activities and announcements from Sahayog Samarpan Seva
-                    Trust.
+                    seva activities and announcements.
                   </p>
                   <a
                     href={whatsappCommunity}
@@ -63,7 +66,6 @@ export default function ContactPage() {
             </div>
           )}
 
-          {/* Other contact details */}
           <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-lg font-semibold text-brand-navy">
               Contact Details
@@ -72,7 +74,7 @@ export default function ContactPage() {
               संपर्क माहिती
             </p>
 
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-6 space-y-5">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-saffron" />
                 <div>
@@ -90,9 +92,18 @@ export default function ContactPage() {
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand-saffron" />
                 <div>
                   <p className="text-sm font-medium text-brand-navy">Phone</p>
-                  <p className="text-sm text-gray-600">
-                    {contact.phone || "Coming soon"}
-                  </p>
+                  <ul className="mt-1 space-y-1">
+                    {contact.contacts.map((person) => (
+                      <li key={person.phone} className="text-sm text-gray-600">
+                        <a
+                          href={`tel:${person.phone.replace(/\s/g, "")}`}
+                          className="transition-colors hover:text-brand-saffron"
+                        >
+                          {person.name} — {person.phone}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </li>
 
@@ -100,12 +111,49 @@ export default function ContactPage() {
                 <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand-saffron" />
                 <div>
                   <p className="text-sm font-medium text-brand-navy">Email</p>
-                  <p className="text-sm text-gray-600">
-                    {contact.email || "Coming soon"}
-                  </p>
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="text-sm text-gray-600 transition-colors hover:text-brand-saffron"
+                  >
+                    {contact.email}
+                  </a>
                 </div>
               </li>
             </ul>
+          </div>
+
+          <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm sm:p-8">
+            <h2 className="text-lg font-semibold text-brand-navy">
+              Follow Us
+            </h2>
+            <p className="font-marathi mt-1 text-sm text-gray-500">
+              आमचे सोशल मीडिया
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-3">
+              {instagram?.href && (
+                <a
+                  href={instagram.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-saffron hover:text-brand-saffron"
+                >
+                  <FaInstagram className="h-4 w-4" />
+                  Instagram
+                </a>
+              )}
+              {linkedin?.href && (
+                <a
+                  href={linkedin.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-saffron hover:text-brand-saffron"
+                >
+                  <FaLinkedinIn className="h-4 w-4" />
+                  LinkedIn
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </section>
