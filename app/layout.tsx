@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Noto_Sans_Devanagari } from "next/font/google";
+import { Plus_Jakarta_Sans, Mukta } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -7,18 +7,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { siteConfig } from "@/data/site";
 
-// Latin font for English text.
-const poppins = Poppins({
-  variable: "--font-poppins",
+// Latin font for English text — clean, modern, distinct from common Poppins sites.
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-// Devanagari font for Marathi text.
-const notoDevanagari = Noto_Sans_Devanagari({
-  variable: "--font-noto-devanagari",
-  subsets: ["devanagari"],
+// Devanagari font for Marathi text — warm, readable Indian typeface.
+const mukta = Mukta({
+  variable: "--font-mukta",
+  subsets: ["devanagari", "latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${notoDevanagari.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${mukta.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-[var(--foreground)]">
         <Navbar />

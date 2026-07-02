@@ -17,8 +17,8 @@
   --color-brand-cream: #fbf9f4;
 
   /* Fonts are injected by next/font in app/layout.tsx as CSS variables. */
-  --font-sans: var(--font-poppins), system-ui, sans-serif;
-  --font-devanagari: var(--font-noto-devanagari), system-ui, sans-serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-devanagari: var(--font-mukta), system-ui, sans-serif;
 }
 
 :root {
