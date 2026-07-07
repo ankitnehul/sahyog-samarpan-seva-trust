@@ -14,7 +14,7 @@ export const managingCommittee: TeamMember[] = [
     name: "Shubham Madke",
     role: "President",
     roleMr: "अध्यक्ष",
-    photo: "/images/team/shubham-madke.jpg",
+    photo: "/images/team/shubham-madke.png",
   },
   {
     name: "Rohit Bhojane",
@@ -32,13 +32,13 @@ export const managingCommittee: TeamMember[] = [
     name: "Laukik Shelke",
     role: "Vice Secretary",
     roleMr: "उपसचिव",
-    photo: "/images/team/laukik-shelke.jpg",
+    photo: "/images/team/laukik-shelke.png",
   },
   {
     name: "Rushikesh Ghule",
     role: "Treasurer",
     roleMr: "कोषाध्यक्ष",
-    photo: "/images/team/rushikesh-ghule.jpg",
+    photo: "/images/team/rushikesh-ghule.png",
   },
 ];
 
