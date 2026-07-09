@@ -98,6 +98,10 @@ export interface WorkEvent {
   location?: string;
   /** Photo path under /public, e.g. "/images/our-work/...". */
   photo: string;
+  /** CSS object-fit for the photo frame. Defaults to cover. */
+  photoFit?: "cover" | "contain";
+  /** CSS object-position, e.g. "center top". */
+  photoPosition?: string;
   /** Body paragraphs (Marathi), rendered in order. */
   description: string[];
 }

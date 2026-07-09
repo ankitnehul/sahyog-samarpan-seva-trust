@@ -20,13 +20,13 @@ export const managingCommittee: TeamMember[] = [
     name: "Rohit Bhojane",
     role: "Vice President",
     roleMr: "उपाध्यक्ष",
-    photo: "/images/team/rohit-bhojane.jpg",
+    photo: "/images/team/rohit-bhojane.png",
   },
   {
     name: "Devdatta Zikre",
     role: "Secretary",
     roleMr: "सचिव",
-    photo: "/images/team/devdatta-zikre.jpg",
+    photo: "/images/team/devdatta-zikre.png",
   },
   {
     name: "Laukik Shelke",

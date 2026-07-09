@@ -24,7 +24,14 @@ export default function EventCard({ event, reverse = false }: EventCardProps) {
               alt={event.title}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className={
+                event.photoFit === "contain" ? "object-contain" : "object-cover"
+              }
+              style={
+                event.photoPosition
+                  ? { objectPosition: event.photoPosition }
+                  : undefined
+              }
             />
             {/* Date badge */}
             <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-brand-navy/90 px-3 py-1.5 text-xs font-medium text-white backdrop-blur">

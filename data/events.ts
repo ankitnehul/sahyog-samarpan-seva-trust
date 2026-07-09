@@ -47,6 +47,8 @@ const events: WorkEvent[] = [
     dateLabel: "31 October 2024",
     location: "Matoshri Vriddhashram, Viladghat, Ahilyanagar",
     photo: "/images/our-work/diwali-2024-matoshri.png",
+    photoFit: "contain",
+    photoPosition: "center",
     description: [
       "सहायोग समर्पण ग्रुप गेल्या ९ वर्षांपासून दिवाळीच्या निमित्ताने दुसऱ्यांच्या चेहऱ्यावर आनंद आणणारे उपक्रम राबवत आहे.",
       "या वर्षी मातोश्री वृद्धाश्रम (विळदघाट, अहिल्यानगर) येथे भेट देऊन वृद्ध आजी-आजोबांसोबत दिवाळी साजरी केली. त्यांना किराणा, फळे आणि इतर आवश्यक वस्तू देत त्यांच्या जीवनात थोडासा गोडवा आणण्याचा प्रयत्न केला.",
