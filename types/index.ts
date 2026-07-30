@@ -119,6 +119,23 @@ export interface UpcomingEvent {
   descriptionMr?: string;
 }
 
+/** A currently active / featured event on the homepage. */
+export interface OngoingEvent {
+  id: string;
+  title: string;
+  titleMr: string;
+  /** Short intro lines (Marathi), shown above the details. */
+  intro: string[];
+  dateLabel: string;
+  timeLabel: string;
+  location: string;
+  /** Closing appeal / invitation lines (Marathi). */
+  appeal: string[];
+  tagline: string;
+  /** Optional flyer / poster image under /public. */
+  flyer?: string;
+}
+
 /** A single gallery image. */
 export interface GalleryImage {
   id: string;
