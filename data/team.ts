@@ -47,39 +47,46 @@ export const projectTeams: TeamGroup[] = [
   {
     title: "Administrative Officer",
     titleMr: "प्रशासकीय अधिकारी",
-    members: [{ name: "Prajakta Bhandari", role: "Administrative Officer" }],
+    members: [{ name: "Prajakta Bhandari" }],
   },
   {
     title: "Education Project Heads",
     titleMr: "शिक्षण प्रकल्प प्रमुख",
     members: [
-      { name: "Chinmay Patil", role: "Education Project Head" },
-      { name: "Ankit Nehul", role: "Education Project Head" },
-      { name: "Laukik Shelke", role: "Education Project Head" },
-      { name: "Devdatta Zikre", role: "Education Project Head" },
-      { name: "Pratiksha Joshi", role: "Education Project Head" },
+      { name: "Chinmay Patil" },
+      { name: "Ankit Nehul" },
+      { name: "Laukik Shelke" },
+      { name: "Devdatta Zikre" },
+      { name: "Pratiksha Joshi" },
     ],
   },
   {
     title: "Health Project Heads",
     titleMr: "आरोग्य प्रकल्प प्रमुख",
     members: [
-      { name: "Aman Shaikh", role: "Health Project Head" },
-      { name: "Rahul Honde", role: "Health Project Head" },
-      { name: "Prajakta Bhandari", role: "Health Project Head" },
+      { name: "Aman Shaikh" },
+      { name: "Rahul Honde" },
+      { name: "Prajakta Bhandari" },
     ],
   },
   {
     title: "Sports Project Head",
     titleMr: "क्रीडा प्रकल्प प्रमुख",
-    members: [{ name: "Sahealam Khan", role: "Sports Project Head" }],
+    members: [{ name: "Sahealam Khan" }],
   },
   {
     title: "Social Media Heads",
     titleMr: "सोशल मीडिया प्रमुख",
-    members: [
-      { name: "Viraj Rasal", role: "Social Media Head" },
-      { name: "Rishabh Bane", role: "Social Media Head" },
-    ],
+    members: [{ name: "Viraj Rasal" }, { name: "Rishabh Bane" }],
   },
+];
+
+/** General members — shown as a name list under Members. */
+export const members: TeamMember[] = [
+  { name: "Ajinkya Likhe" },
+  { name: "Anand Goyal" },
+  { name: "Janhavi Dake" },
+  { name: "Sarthak Miskin" },
+  { name: "Sumit Ghodake" },
+  { name: "Vedant Kadam" },
 ];

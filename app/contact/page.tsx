@@ -46,7 +46,7 @@ export default function ContactPage() {
                     WhatsApp Community
                   </h2>
                   <p className="font-marathi mt-1 text-sm text-brand-saffron">
-                    व्हॉट्सअॅप समुदाय
+                    व्हॉट्सॲप समुदाय
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-gray-600">
                     Join our WhatsApp community to receive updates about events,

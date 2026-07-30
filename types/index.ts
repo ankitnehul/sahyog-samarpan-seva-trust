@@ -61,8 +61,8 @@ export type DonationStatus = "coming-soon" | "active";
 /** A single team member / office bearer. */
 export interface TeamMember {
   name: string;
-  /** Role/portfolio in English, e.g. "President". */
-  role: string;
+  /** Role/portfolio in English, e.g. "President". Optional when the group heading already covers it. */
+  role?: string;
   /** Role/portfolio in Marathi, e.g. "अध्यक्ष". */
   roleMr?: string;
   /**

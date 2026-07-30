@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Avatar from "@/components/Avatar";
-import { managingCommittee, projectTeams } from "@/data/team";
+import { managingCommittee, projectTeams, members } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet the Managing Committee and project heads of Sahayog Samarpan Seva Foundation.",
+    "Meet the Managing Committee, project heads and members of Sahayog Samarpan Seva Foundation.",
 };
 
 export default function TeamPage() {
@@ -40,7 +40,7 @@ export default function TeamPage() {
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-5">
           {managingCommittee.map((member) => (
             <div
-              key={member.role}
+              key={member.role ?? member.name}
               className="flex flex-col rounded-xl border border-black/5 bg-white p-3 shadow-sm transition-shadow hover:shadow-md"
             >
               <Avatar
@@ -52,9 +52,11 @@ export default function TeamPage() {
                 <h3 className="text-sm font-semibold text-brand-navy">
                   {member.name}
                 </h3>
-                <p className="mt-0.5 text-xs font-medium text-brand-saffron">
-                  {member.role}
-                </p>
+                {member.role && (
+                  <p className="mt-0.5 text-xs font-medium text-brand-saffron">
+                    {member.role}
+                  </p>
+                )}
                 {member.roleMr && (
                   <p className="font-marathi text-xs text-gray-500">
                     {member.roleMr}
@@ -66,7 +68,7 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Project Heads & teams — portfolio-wise */}
+      {/* Project Heads & teams — portfolio-wise, names only under each heading */}
       <section className="bg-brand-cream py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
@@ -100,18 +102,38 @@ export default function TeamPage() {
                       className="flex items-center gap-4 rounded-lg bg-white p-4 shadow-sm"
                     >
                       <Avatar name={member.name} variant="round" />
-                      <div>
-                        <p className="font-semibold text-brand-navy">
-                          {member.name}
-                        </p>
-                        <p className="text-sm text-gray-500">{member.role}</p>
-                      </div>
+                      <p className="font-semibold text-brand-navy">
+                        {member.name}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Members */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
+          <h2 className="text-2xl font-bold text-brand-navy sm:text-3xl">
+            Members
+          </h2>
+          <p className="font-marathi mt-1 text-brand-saffron">सदस्य</p>
+          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
+        </div>
+
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {members.map((member) => (
+            <div
+              key={member.name}
+              className="flex items-center gap-4 rounded-lg border border-black/5 bg-white p-4 shadow-sm"
+            >
+              <Avatar name={member.name} variant="round" />
+              <p className="font-semibold text-brand-navy">{member.name}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>
