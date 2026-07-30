@@ -39,6 +39,11 @@ export const metadata: Metadata = {
     "healthcare",
     "donation",
   ],
+  icons: {
+    icon: [{ url: "/logo/logo.png", type: "image/png" }],
+    apple: [{ url: "/logo/logo.png", type: "image/png" }],
+    shortcut: "/logo/logo.png",
+  },
 };
 
 export default function RootLayout({
