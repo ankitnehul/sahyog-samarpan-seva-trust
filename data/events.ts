@@ -18,6 +18,7 @@ const events: WorkEvent[] = [
     location: "Mukbadhir Vidyalaya, Tapovan Road, Savedi, Ahilyanagar",
     photo: "/images/our-work/art-workshop-mukbadhir-2026.png",
     photoPosition: "center",
+    secondaryPhoto: "/images/gallery/art-workshop-students.png",
     description: [
       "Some journeys truly come full circle. On 1st August 2026, the Sahyog Samarpan team had the privilege of conducting an art workshop for students at a school for children with hearing and speech impairments. Together, we arranged art materials and spent the day encouraging creativity, self-expression, and confidence through art.",
       "One message we shared with the students was that not every emotion needs words—art has the power to express what words often cannot.",
