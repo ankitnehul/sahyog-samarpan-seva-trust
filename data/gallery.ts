@@ -3,6 +3,34 @@ import type { GalleryImage } from "@/types";
 /** Gallery images shown on the Gallery page. */
 export const galleryImages: GalleryImage[] = [
   {
+    id: "art-workshop-prize-presentation",
+    src: "/images/gallery/art-workshop-prize-presentation.png",
+    alt: "Prize presentation during the art workshop at Mukbadhir Vidyalaya",
+    caption: "Encouraging young artists at the art workshop",
+    captionMr: "चित्रकला उपक्रमातील बालकलाकारांना प्रोत्साहन",
+  },
+  {
+    id: "art-workshop-students",
+    src: "/images/gallery/art-workshop-students.png",
+    alt: "Students creating artwork during the painting competition",
+    caption: "Students expressing their creativity through art",
+    captionMr: "कलेतून सर्जनशीलता व्यक्त करताना विद्यार्थी",
+  },
+  {
+    id: "art-workshop-team",
+    src: "/images/gallery/art-workshop-team.png",
+    alt: "Sahayog Samarpan team and teachers at Mukbadhir Vidyalaya",
+    caption: "Sahayog Samarpan members with the school team",
+    captionMr: "विद्यालयाच्या शिक्षकांसोबत सहयोग समर्पण परिवार",
+  },
+  {
+    id: "art-materials-presentation",
+    src: "/images/gallery/art-materials-presentation.png",
+    alt: "Presentation of art materials at Mukbadhir Vidyalaya",
+    caption: "Art materials arranged for the young participants",
+    captionMr: "बालसहभागींसाठी चित्रकला साहित्य",
+  },
+  {
     id: "mukbadhir-vidyalaya",
     src: "/images/gallery/mukbadhir-vidyalaya.png",
     alt: "Group photo at Mukbadhir Vidyalaya, Savedi, Ahilyanagar",

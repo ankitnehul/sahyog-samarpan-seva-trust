@@ -4,8 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, HeartHandshake } from "lucide-react";
+import { HeartHandshake, Menu, UserPlus, X } from "lucide-react";
 import { siteConfig } from "@/data/site";
+
+const membershipForm = "https://forms.gle/XJkS4AHdGHvAe7Ev7";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -55,8 +57,18 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Donate CTA (Coming Soon) + mobile toggle */}
+        {/* Membership + Donate CTAs and mobile toggle */}
         <div className="flex items-center gap-2">
+          <a
+            href={membershipForm}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-2 rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:inline-flex"
+          >
+            <UserPlus className="h-4 w-4" />
+            Join Us
+          </a>
+
           <button
             type="button"
             disabled
@@ -105,6 +117,16 @@ export default function Navbar() {
               </li>
             ))}
             <li className="px-3 py-3">
+              <a
+                href={membershipForm}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="mb-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                <UserPlus className="h-4 w-4" />
+                Join Us
+              </a>
               <button
                 type="button"
                 disabled

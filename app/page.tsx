@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { Calendar, CalendarClock, Clock, MapPin } from "lucide-react";
+import { CalendarClock, MapPin } from "lucide-react";
+import EventCard from "@/components/EventCard";
 import { siteConfig } from "@/data/site";
-import { ongoingEvent } from "@/data/ongoing";
+import { workEvents } from "@/data/events";
 import { upcomingEvents } from "@/data/upcoming";
 
 export default function Home() {
@@ -38,97 +39,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ongoing Event */}
-      {ongoingEvent && (
-        <section className="bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="mb-10 text-center">
-              <p className="font-marathi text-brand-saffron">चालू उपक्रम</p>
-              <h2 className="mt-1 text-2xl font-bold text-brand-navy sm:text-3xl">
-                Ongoing Event
-              </h2>
-              <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
-            </div>
-
-            <article className="overflow-hidden rounded-2xl border border-black/5 bg-brand-cream shadow-sm">
-              <div className="flex flex-col lg:flex-row">
-                {ongoingEvent.flyer && (
-                  <div className="relative aspect-[3/4] w-full bg-white lg:w-2/5 lg:aspect-auto lg:min-h-[520px]">
-                    <Image
-                      src={ongoingEvent.flyer}
-                      alt={ongoingEvent.title}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-contain p-2"
-                      priority
-                    />
-                  </div>
-                )}
-
-                <div className="flex flex-1 flex-col justify-center gap-5 p-6 sm:p-8 lg:p-10">
-                  <div>
-                    <span className="inline-flex items-center rounded-full bg-brand-saffron/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-saffron-dark">
-                      Happening soon
-                    </span>
-                    <h3 className="font-marathi mt-4 text-2xl font-bold text-brand-navy sm:text-3xl">
-                      {ongoingEvent.titleMr}
-                    </h3>
-                    <p className="mt-1 text-base font-medium text-brand-green-dark">
-                      {ongoingEvent.title}
-                    </p>
-                  </div>
-
-                  {ongoingEvent.intro.map((para, idx) => (
-                    <p
-                      key={idx}
-                      className="font-marathi text-sm leading-relaxed text-gray-700 sm:text-base"
-                    >
-                      {para}
-                    </p>
-                  ))}
-
-                  <div className="grid gap-3 sm:grid-cols-1">
-                    <p className="flex items-start gap-2.5 text-sm text-gray-700">
-                      <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-brand-saffron" />
-                      <span>
-                        <span className="font-medium text-brand-navy">दिनांक: </span>
-                        <span className="font-marathi">{ongoingEvent.dateLabel}</span>
-                      </span>
-                    </p>
-                    <p className="flex items-start gap-2.5 text-sm text-gray-700">
-                      <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-saffron" />
-                      <span>
-                        <span className="font-medium text-brand-navy">वेळ: </span>
-                        <span className="font-marathi">{ongoingEvent.timeLabel}</span>
-                      </span>
-                    </p>
-                    <p className="flex items-start gap-2.5 text-sm text-gray-700">
-                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-                      <span>
-                        <span className="font-medium text-brand-navy">स्थळ: </span>
-                        <span className="font-marathi">{ongoingEvent.location}</span>
-                      </span>
-                    </p>
-                  </div>
-
-                  {ongoingEvent.appeal.map((para, idx) => (
-                    <p
-                      key={idx}
-                      className="font-marathi text-sm leading-relaxed text-gray-700"
-                    >
-                      {para}
-                    </p>
-                  ))}
-
-                  <p className="font-marathi text-sm font-semibold text-brand-green-dark">
-                    {siteConfig.nameMr} &middot; &ldquo;{ongoingEvent.tagline}&rdquo;
-                  </p>
-                </div>
-              </div>
-            </article>
+      {/* Most recently completed initiative */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <p className="font-marathi text-brand-saffron">नुकताच पूर्ण झालेला उपक्रम</p>
+            <h2 className="mt-1 text-2xl font-bold text-brand-navy sm:text-3xl">
+              Recent Initiative
+            </h2>
+            <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
           </div>
-        </section>
-      )}
+          <EventCard event={workEvents[0]} />
+        </div>
+      </section>
 
       {/* Upcoming Events */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">

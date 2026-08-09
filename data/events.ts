@@ -10,6 +10,25 @@ import type { WorkEvent } from "@/types";
  */
 const events: WorkEvent[] = [
   {
+    id: "art-workshop-mukbadhir-2026",
+    title: "Art Workshop at Mukbadhir Vidyalaya",
+    titleMr: "कलेच्या रंगांत उमलली अनोखी स्वप्ने!",
+    date: "2026-08-01",
+    dateLabel: "1 August 2026",
+    location: "Mukbadhir Vidyalaya, Tapovan Road, Savedi, Ahilyanagar",
+    photo: "/images/our-work/art-workshop-mukbadhir-2026.png",
+    photoPosition: "center",
+    description: [
+      "Some journeys truly come full circle. On 1st August 2026, the Sahyog Samarpan team had the privilege of conducting an art workshop for students at a school for children with hearing and speech impairments. Together, we arranged art materials and spent the day encouraging creativity, self-expression, and confidence through art.",
+      "One message we shared with the students was that not every emotion needs words—art has the power to express what words often cannot.",
+      "This visit was especially meaningful because, before Sahyog Samarpan was formed, we had visited the same school to distribute kites purchased from funds we had collectively raised. Returning years later to give back through art felt like life had come full circle.",
+      "Grateful to the school, its teachers, and every Sahyog Samarpan member who made this initiative possible. Small acts, when done together, can create a lasting impact.",
+      "२०१६ मध्ये 'मकर संक्रांती'च्या पहिल्या उपक्रमाने याच मूकबधिर विद्यालयातून सुरू झालेला आमचा सामाजिक प्रवास, १० वर्षांची अखंड सेवा आणि फाउंडेशनची अधिकृत नोंदणी पूर्ण करून, आज ११ व्या वर्षात पुनश्च याच ठिकाणी अत्यंत आत्मीयतेने परतला! सहयोग समर्पण सेवा फाउंडेशन तर्फे सावेडी येथील मूकबधिर विद्यालयात आयोजित चित्रकला स्पर्धा अत्यंत उत्साहात पार पडली. हा उपक्रम म्हणजे केवळ एक कार्यक्रम नसून माणुसकी, संवेदनशीलता आणि प्रेरणेचा एक भावुक प्रवास ठरला.",
+      "ऐकता किंवा बोलता येत नसले तरी, या बालकलाकारांच्या चित्रांनी त्यांच्या अमर्याद भावना, स्वप्ने आणि अफाट प्रतिभा अतिशय सुंदरपणे रेखाटली. आज आम्ही त्यांना प्रोत्साहन देण्यास गेलो होतो, मात्र त्यांच्या जिद्द आणि सकारात्मकतेने आम्हांलाच जगण्याचा खरा धडा दिला. 'सेवा म्हणजे केवळ मदत नव्हे, तर समाजाशी मनापासून जोडले जाणे' याची प्रचिती पुन्हा एकदा आली.",
+      "या स्नेहाच्या उपक्रमास पाठबळ देणारे विद्यालयाचे सर्व शिक्षक, विद्यार्थी आणि फाउंडेशनच्या प्रत्येक सदस्याचे मनःपूर्वक आभार! शब्द नसले तरी रंग बोलतात... आणि आज त्या रंगांनी आमच्या मनावर कायमचा ठसा उमटवला! 💫",
+    ],
+  },
+  {
     id: "maharashtra-day-2026",
     title: "Maharashtra Day Initiative at Anam Prem",
     titleMr: "महाराष्ट्र दिन उपक्रम",

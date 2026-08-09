@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
+import {
+  BadgeCheck,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  UserPlus,
+} from "lucide-react";
 import {
   FaWhatsapp,
   FaInstagram,
@@ -17,6 +24,7 @@ export default function ContactPage() {
   const whatsappCommunity = contact.whatsappCommunity;
   const instagram = social.find((s) => s.platform === "instagram");
   const linkedin = social.find((s) => s.platform === "linkedin");
+  const membershipForm = "https://forms.gle/XJkS4AHdGHvAe7Ev7";
 
   return (
     <div className="bg-white">
@@ -65,6 +73,35 @@ export default function ContactPage() {
               </div>
             </div>
           )}
+
+          <div className="rounded-2xl border border-brand-saffron/20 bg-brand-cream p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-saffron/15">
+                <UserPlus className="h-6 w-6 text-brand-saffron" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-lg font-semibold text-brand-navy">
+                  Become a Member
+                </h2>
+                <p className="font-marathi mt-1 text-sm text-brand-green-dark">
+                  आमच्यासोबत सहभागी व्हा
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                  Join Sahayog Samarpan Seva Foundation and take part in
+                  meaningful social initiatives that create a lasting impact.
+                </p>
+                <a
+                  href={membershipForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-saffron px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                >
+                  <UserPlus className="h-4 w-4" />
+                  Join Us
+                </a>
+              </div>
+            </div>
+          </div>
 
           <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-lg font-semibold text-brand-navy">
@@ -117,6 +154,21 @@ export default function ContactPage() {
                   >
                     {contact.email}
                   </a>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-3">
+                <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
+                <div>
+                  <p className="text-sm font-medium text-brand-navy">
+                    NGO Darpan Details
+                  </p>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Darpan ID —{" "}
+                    <span className="font-medium text-brand-navy">
+                      MH/2026/1159343
+                    </span>
+                  </p>
                 </div>
               </li>
             </ul>
