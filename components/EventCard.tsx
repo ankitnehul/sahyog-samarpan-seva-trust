@@ -16,8 +16,8 @@ export default function EventCard({ event, reverse = false }: EventCardProps) {
           reverse ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
-        {/* Uniform photo frame, with an optional second activity photo. */}
-        <div className="flex flex-col gap-2 bg-brand-cream sm:gap-3 lg:w-1/2">
+        {/* Uniform photo frame — identical aspect ratio for every event. */}
+        <div className="lg:w-1/2">
           <div className="relative aspect-[4/3] w-full bg-brand-cream">
             <Image
               src={event.photo}
@@ -40,19 +40,6 @@ export default function EventCard({ event, reverse = false }: EventCardProps) {
             </div>
           </div>
 
-          {event.secondaryPhoto && (
-            <div className="flex flex-1 items-center bg-brand-cream">
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-cream">
-                <Image
-                  src={event.secondaryPhoto}
-                  alt={`Children participating in ${event.title}`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Content */}

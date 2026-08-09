@@ -102,8 +102,6 @@ export interface WorkEvent {
   photoFit?: "cover" | "contain";
   /** CSS object-position, e.g. "center top". */
   photoPosition?: string;
-  /** Optional second event photo displayed below the main photo. */
-  secondaryPhoto?: string;
   /** Body paragraphs (Marathi), rendered in order. */
   description: string[];
 }
