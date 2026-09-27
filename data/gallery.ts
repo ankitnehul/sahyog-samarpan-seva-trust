@@ -29,9 +29,9 @@ export const galleryAlbums: GalleryAlbum[] = [
       {
         id: "ganpati-workshop-guidance",
         src: "/images/gallery/ganpati-workshop-guidance.jpg",
-        alt: "Shri Ashok Dolse guiding children as they make Ganpati idols",
-        caption: "Shri Ashok Dolse guiding the children",
-        captionMr: "श्री. अशोक डोळसे सर मुलांना मार्गदर्शन करताना",
+        alt: "Committee members guiding children as they make Ganpati idols",
+        caption: "Committee members guiding the children",
+        captionMr: "समिती सदस्य मुलांना मार्गदर्शन करताना",
         fit: "contain",
       },
       {
