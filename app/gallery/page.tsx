@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { galleryImages } from "@/data/gallery";
+import { galleryAlbums } from "@/data/gallery";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -23,40 +23,56 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {galleryImages.map((image) => (
-            <figure
-              key={image.id}
-              className="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-lg"
-            >
-              <div className="relative aspect-[4/3] w-full bg-brand-cream">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              {(image.caption || image.captionMr) && (
-                <figcaption className="p-4">
-                  {image.caption && (
-                    <p className="text-sm font-medium text-brand-navy">
-                      {image.caption}
-                    </p>
+      <div className="mx-auto max-w-6xl space-y-16 px-4 py-16 sm:px-6 lg:px-8">
+        {galleryAlbums.map((album) => (
+          <section key={album.id} id={album.id}>
+            <div className="mb-8">
+              <p className="font-marathi text-brand-saffron">{album.titleMr}</p>
+              <h2 className="mt-1 text-2xl font-bold text-brand-navy sm:text-3xl">
+                {album.title}
+              </h2>
+              <div className="mt-4 h-1 w-16 rounded-full bg-brand-saffron" />
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {album.images.map((image) => (
+                <figure
+                  key={image.id}
+                  className="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-lg"
+                >
+                  <div className="relative aspect-[4/3] w-full bg-brand-cream">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className={
+                        image.fit === "contain"
+                          ? "object-contain"
+                          : "object-cover transition-transform duration-300 group-hover:scale-105"
+                      }
+                    />
+                  </div>
+                  {(image.caption || image.captionMr) && (
+                    <figcaption className="p-4">
+                      {image.caption && (
+                        <p className="text-sm font-medium text-brand-navy">
+                          {image.caption}
+                        </p>
+                      )}
+                      {image.captionMr && (
+                        <p className="font-marathi mt-1 text-xs text-brand-saffron">
+                          {image.captionMr}
+                        </p>
+                      )}
+                    </figcaption>
                   )}
-                  {image.captionMr && (
-                    <p className="font-marathi mt-1 text-xs text-brand-saffron">
-                      {image.captionMr}
-                    </p>
-                  )}
-                </figcaption>
-              )}
-            </figure>
-          ))}
-        </div>
-      </section>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

@@ -39,17 +39,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Most recently completed initiative */}
+      {/* Two most recently completed initiatives */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
-            <p className="font-marathi text-brand-saffron">नुकताच पूर्ण झालेला उपक्रम</p>
+            <p className="font-marathi text-brand-saffron">
+              नुकतेच पूर्ण झालेले उपक्रम
+            </p>
             <h2 className="mt-1 text-2xl font-bold text-brand-navy sm:text-3xl">
-              Recent Initiative
+              Recent Initiatives
             </h2>
             <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
           </div>
-          <EventCard event={workEvents[0]} />
+          <div className="space-y-10">
+            {workEvents.slice(0, 2).map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
         </div>
       </section>
 

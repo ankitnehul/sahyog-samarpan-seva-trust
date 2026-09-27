@@ -102,6 +102,8 @@ export interface WorkEvent {
   photoFit?: "cover" | "contain";
   /** CSS object-position, e.g. "center top". */
   photoPosition?: string;
+  /** Optional second event photo displayed below the main photo. */
+  secondaryPhoto?: string;
   /** Body paragraphs (Marathi), rendered in order. */
   description: string[];
 }
@@ -143,6 +145,16 @@ export interface GalleryImage {
   alt: string;
   caption?: string;
   captionMr?: string;
+  /** CSS object-fit. Use contain for portrait photos so the full frame stays visible. */
+  fit?: "cover" | "contain";
+}
+
+/** Photos from one event, shown as its own gallery section. */
+export interface GalleryAlbum {
+  id: string;
+  title: string;
+  titleMr: string;
+  images: GalleryImage[];
 }
 
 /** Top-level configuration for the entire site. */
