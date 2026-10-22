@@ -11,6 +11,10 @@ function isGovernance(title: string) {
   return title === "Governance" || title === "व्यवस्थापन";
 }
 
+function isCommitment(title: string) {
+  return title === "Our Commitment" || title === "आमची प्रतिबद्धता";
+}
+
 export function AboutSections({ content, marathi = false }: AboutSectionsProps) {
   return (
     <div className={marathi ? "font-marathi" : undefined}>
@@ -19,6 +23,7 @@ export function AboutSections({ content, marathi = false }: AboutSectionsProps) 
       <div className="mt-10 space-y-10">
         {content.sections.map((section) => {
           const governance = isGovernance(section.title);
+          const commitment = isCommitment(section.title);
           return (
             <section
               key={section.title}
@@ -46,7 +51,17 @@ export function AboutSections({ content, marathi = false }: AboutSectionsProps) 
                 </p>
               )}
 
-              {section.paragraphs && (
+              {section.paragraphs && commitment && (
+                <blockquote
+                  className={`mt-4 max-w-3xl border-l-4 border-brand-gold-ink pl-4 text-[clamp(1.45rem,3vw,1.85rem)] leading-snug text-brand-navy ${
+                    marathi ? "font-display-mr" : "font-display-en font-medium"
+                  }`}
+                >
+                  {section.paragraphs[0]}
+                </blockquote>
+              )}
+
+              {section.paragraphs && !commitment && (
                 <div className="mt-4 max-w-3xl space-y-5 text-lg leading-9 sm:text-xl sm:leading-10">
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
