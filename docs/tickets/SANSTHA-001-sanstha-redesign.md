@@ -71,6 +71,36 @@ Rules for color:
 - Corner radius 4–6px at most, where a radius is needed. No pill buttons, except the WhatsApp link, which keeps its brand color.
 - Photographs keep their natural proportions where the layout allows it.
 
+### Responsive contract
+
+Build mobile-first. Each page must work from 320px upward without horizontal scrolling, clipped text, overlapping controls, or content hidden behind the sticky letterhead.
+
+| Range | Required behavior |
+|---|---|
+| 320–639px (phone) | One content column; 16px page gutters; stacked actions; no side margins for timeline years; tap targets at least 44×44px. |
+| 640–767px (large phone) | One column with wider gutters; two columns only for short, equal-length items where wrapping is safe. |
+| 768–1023px (tablet) | Two-column compositions may begin; navigation remains in its mobile form until all labels fit without compression. |
+| 1024–1279px (small desktop) | Full letterhead navigation; timeline may gain its year margin; content width remains constrained for readability. |
+| 1280px and above (desktop) | Use whitespace, not stretched text or oversized images; cap the site shell around 1200–1280px and reading columns around 65 characters. |
+
+- Prefer normal document flow, CSS Grid, and Flexbox. Do not position content with fixed pixel offsets.
+- Use fluid type and spacing where helpful (`clamp()` or responsive Tailwind classes), but set sensible minimum and maximum values.
+- Long English names, Marathi text, dates, phone numbers, and email addresses must wrap safely (`min-w-0`, `overflow-wrap:anywhere` where necessary).
+- At 200% browser zoom, navigation and page actions remain reachable and content does not overlap.
+- Avoid viewport-height hero sections on phones; the opening must not push all useful content below the fold.
+
+### Image and media contract
+
+- Preserve each content photograph’s intrinsic aspect ratio. With `next/image`, prefer explicit `width` and `height` (or imported image metadata) and `className="h-auto w-full"` for editorial images.
+- Use `fill` only when a deliberately fixed visual frame is part of the design and its parent has a defined aspect ratio.
+- Use `object-cover` only for intentionally decorative crops. Never crop faces, the foundation banner/logo, event artwork, text inside a photo, or important activity details.
+- Keep existing `photoFit` and `photoPosition` metadata working. `contain` images receive a neutral `paper-deep` background and must not be silently changed to `cover`.
+- Add per-image focal-position metadata only when a crop is unavoidable. Validate that focal point at phone, tablet, and desktop widths.
+- The logo always uses `object-contain`; it must never be stretched, clipped, or masked by a circle.
+- Gallery thumbnails may use a consistent frame for rhythm, but opening/full presentation must show the complete image. If no lightbox is implemented, use `object-contain` for images whose important content would otherwise be lost.
+- Supply accurate responsive `sizes` to every `next/image`, keep descriptive `alt` text, and prevent layout shift by reserving image dimensions before loading.
+- Missing or broken images must not collapse the surrounding layout.
+
 ## Shared components
 
 ### 1. `components/Navbar.tsx` → letterhead bar
@@ -79,6 +109,9 @@ Rules for color:
 - Links in Source Sans 3. The current page gets a gold underline instead of a saffron color change.
 - On the right: **Join** (saffron, opens the membership form) and **Donate** (quiet outline, disabled, “coming soon”).
 - Mobile menu: Marathi label first, English beside it, on `paper`.
+- At widths where the brand, six links, and actions do not all fit, use the mobile menu; do not shrink text or allow two navigation rows.
+- Opening the mobile menu must not move controls off-screen. It closes after navigation, on `Escape`, and when switching to the desktop breakpoint. Lock background scrolling while it is open.
+- The sticky header must have a measured offset so anchored content and page headings are not obscured.
 
 ### 2. `components/PageHeading.tsx` (new)
 
@@ -112,6 +145,8 @@ Navy ground. Motto **सेवा हेच कर्म** large, the six areas 
 6. **Ongoing.** If `ongoingEvent` in `data/ongoing.ts` is not `null`, show it above Latest seva. It is `null` today, so nothing renders.
 7. **Join.** A `paper-deep` band: why to join, ₹500 and ₹1,000, and the Join action.
 
+On phones, every section is one column and the latest-seva text follows the complete image. On desktop, image and text may share a grid only if neither is cropped and the reading order remains image → date/place → titles → action.
+
 ### About (`app/about/page.tsx`, `components/AboutSections.tsx`)
 
 - `PageHeading`: आमच्याबद्दल / About Us.
@@ -127,18 +162,24 @@ Navy ground. Motto **सेवा हेच कर्म** large, the six areas 
 - Each visit: date in saffron, place, Marathi title in Tiro Devanagari Marathi, English title in Newsreader, photograph at natural proportion (respect `photoFit` and `photoPosition`), then the Marathi account in Mukta in a reading column of about 65 characters.
 - Keep the closing **!! सेवा हेच कर्म !!** once per visit.
 - Remove the alternating left/right card layout and the `reverse` prop.
+- On phones and tablets, the year becomes an inline label above the event; no empty timeline gutter remains.
+- For very tall or very wide source images, constrain only the maximum rendered height and use `object-contain`; do not force a common aspect ratio.
 
 ### Team (`app/team/page.tsx`, `components/Avatar.tsx`)
 
 - `PageHeading`: आमची टीम / Our Team.
 - Managing committee: photos kept, Marathi role first, English role beneath, laid out like an office roll, not floating cards.
 - Project teams and members: name rolls under ruled headings. Drop the round initial avatars there, unless a photo exists.
+- Committee photos use one documented portrait ratio and `object-position` metadata where needed. Verify every face remains visible at all breakpoints.
+- The committee grid is two columns only when names and roles fit; otherwise it falls back to one. Do not truncate names.
 
 ### Gallery (`app/gallery/page.tsx`)
 
 - `PageHeading`: गॅलरी / Gallery.
 - Albums stay in the same order. Photographs sit in a print-like grid with thin borders and Mukta captions.
 - Keep the hover zoom subtle, or remove it.
+- Use one column on phones, two on tablets, and up to three on desktop. Captions determine card height; they must not be line-clamped.
+- Do not use hover as the only way to reveal information or access the complete photograph.
 
 ### Contact (`app/contact/page.tsx`)
 
@@ -160,7 +201,7 @@ Do these in order, with one commit per step, using conventional commits (for exa
 - [ ] **5. About** and `AboutSections`.
 - [ ] **6. Team, Gallery, Contact,** and `ComingSoon`.
 - [ ] **7. Clean up.** Remove unused classes, the unused `reverse` prop, and the Plus Jakarta import.
-- [ ] **8. Verify** (see below).
+- [ ] **8. Verify responsive layout and images** using the matrix below; fix every failure before preview review.
 - [ ] **9. Ship.** Push `sahayog_samarpan_sanstha_template`, review the Vercel preview deployment, then merge into `main`.
 
 ## Acceptance criteria
@@ -176,14 +217,31 @@ Do these in order, with one commit per step, using conventional commits (for exa
 - Every route renders: `/`, `/about`, `/our-work`, `/team`, `/gallery`, `/contact`.
 - `npm run lint` and `npm run build` pass.
 - Body text contrast is at least 4.5:1 on `paper` and on navy.
+- No horizontal page scroll at 320, 375, 390, 768, 1024, 1280, or 1440px.
+- No text, navigation item, action, caption, or contact value is clipped, truncated, or overlaps another element.
+- Layouts do not rely on hover and remain usable with keyboard and touch.
+- All interactive targets are at least 44×44px on touch layouts and have a visible keyboard focus state.
+- No logo, face, text-bearing image, event banner, or important activity detail is cropped.
+- Images preserve their aspect ratios without stretching and reserve their space before loading (no visible layout jump).
+- Mobile-menu state and sticky-header behavior remain correct during resize and route changes.
+- The page remains usable at 200% browser zoom.
 
 ## Verification
 
 1. `npm run lint` and `npm run build` in `sahyog-seva-foundation`.
-2. `npm run dev`, then check every route at 375px, 768px, and 1280px wide.
-3. Check long Marathi paragraphs for line length and line height, and check that Devanagari conjuncts render in Tiro Devanagari Marathi and Mukta.
-4. Check keyboard focus on the navigation, Join, the mobile menu, and the WhatsApp link.
-5. Review the Vercel preview for the branch before merging into `main`.
+2. Run the production build locally (`npm run build && npm run start`) for final browser checks; development mode alone is not sufficient.
+3. Check **every route** at 320×568, 375×667, 390×844, 768×1024, 1024×768, 1280×800, and 1440×900. Test portrait and landscape where applicable.
+4. At each width, inspect the top, middle, and bottom of the page—not only the initial viewport—and confirm there is no horizontal overflow.
+5. Review every real image in Home, Our Work, Team, and Gallery. Compare it with its source file and confirm faces, text, logos, banners, and the activity’s subject are visible. Test both `cover` and `contain` metadata cases.
+6. Test image loading with a throttled network and with one deliberately invalid image URL in local development; confirm reserved dimensions and a stable, readable fallback.
+7. Check long Marathi paragraphs for line length and line height, and verify Devanagari conjuncts and numerals in Tiro Devanagari Marathi and Mukta.
+8. Test keyboard-only navigation: skip through the letterhead, menu, Join, disabled Donate, gallery links (if any), contact links, and footer. Confirm visible focus and logical order.
+9. Test the mobile menu at 320px and 390px: open, scroll, close with its button, close with `Escape`, navigate to another route, and resize past the desktop breakpoint.
+10. Test at 200% browser zoom and with reduced-motion enabled. Confirm content remains available and no essential behavior depends on animation.
+11. Check Chrome and Edge on desktop and at least one real or emulated iOS Safari-sized and Android Chrome-sized viewport. Record any browser-specific exception in this ticket.
+12. Run Lighthouse on Home and Our Work in the production build. Resolve accessibility errors and image/layout-shift findings; treat performance warnings as work items when caused by this redesign.
+13. Capture reference screenshots for all six routes at 390px and 1440px and attach them to the merge request or ticket.
+14. Review the Vercel preview at phone and desktop widths before merging into `main`.
 
 ## Branch and release notes
 
