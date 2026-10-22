@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Type | feat (visual elevation of the existing Sanstha site) |
-| Status | Ready to execute. Not started. |
+| Status | In progress. Audit recorded 22 October 2026. |
 | Repository | `sahyog-seva-foundation` (Next.js 16, React 19, Tailwind v4) |
 | Parent ticket | [SANSTHA-001](./SANSTHA-001-sanstha-redesign.md) |
 | Work branch | `sahayog_samarpan_chatgpt1_theme` |
@@ -193,11 +193,35 @@ Keep the three ruled paths: WhatsApp, membership (fees and `JoinLink` from `site
 - Do not add a dependency to satisfy this ticket.
 - Update this ticket’s task checkboxes and a short verification record when the work is done. Update SANSTHA-001 only if a contract there is intentionally changed; if so, name the change in both tickets.
 
+## Audit record — 22 October 2026
+
+Confirmed on this branch (`96f5182`, same pages as live `main`). The “do not undo” list matches the code: six routes, four fonts, seal frames, `xl` navigation, two featured home visits, `object-contain` images, fees and membership URL only in `siteConfig`, Donate disabled, Diwali 2024 at 1024×512, description size `text-lg` / `sm:text-xl`.
+
+Weaknesses, confirmed:
+
+1. Home opening is type on navy (`py-10 sm:py-14`) and the two visits use the same image-left split. No next step in the opening.
+2. About is two stacked language columns. Contact is one narrow stack. The recent list is a single column of links.
+3. `EventCard` gives every photograph the same full-width frame, whether the file is 2:1 (Diwali 2024) or 4:3.
+4. Gallery is `md:2` / `lg:3` for every image, including portraits and wide groups.
+5. Team is a three-column tile grid. The five committee photos all exist. Footer headings use `tracking-wide` on Devanagari.
+
+Compositions chosen:
+
+- Home: tighter navy opening, one gold-underline link to the first visit, second visit text-left on desktop only, image still first on a phone. Areas stay a text index. Recent list gains a date column from `sm`. A highlight of the first photograph of each gallery album (five images), captions visible, link to `/gallery`.
+- About: one existing photograph (`diwali-2024-matoshri.png`) once, above both languages. The commitment paragraph already in `data/about.ts` is set as a pull quote. Section order unchanged.
+- Our Work: same information order. Frame width comes from `image-meta.ts`: ratio ≥ 1.7 full width, ratio < 1 a narrow column, otherwise `max-w-3xl`. Account text stays large and within `max-w-3xl`.
+- Team: one office roll, photograph beside the name from `sm`. Name rolls unchanged. No third column of portraits.
+- Gallery: landscape images (`width / height ≥ 1.35`) span two columns from `md`; portraits stay one. Lightbox is a `<dialog>` in `components/GalleryAlbums.tsx`, imported only by the gallery page.
+- Contact: the same three paths, each with a Devanagari index (१ २ ३) in a side column from `sm`.
+- Footer: seal beside the motto; headings lose letter-spacing. Join pairs `सदस्य व्हा` with “Join Us”. Other English-only labels stay English.
+
+Files to change: `app/globals.css`, `components/Navbar.tsx`, `components/Footer.tsx`, `components/PageHeading.tsx`, `components/JoinLink.tsx`, `components/DonateButton.tsx`, `components/EventCard.tsx`, `components/AboutSections.tsx`, `components/ComingSoon.tsx`, `app/page.tsx`, `app/about/page.tsx`, `app/team/page.tsx`, `app/gallery/page.tsx`, `app/contact/page.tsx`, new `components/GalleryAlbums.tsx`, new `lib/image-frame.ts`. Not changed: `data/*` copy, routes, fonts, palette values, `Seal.tsx` frame sizes.
+
 ## Tasks
 
 Do these in order, on `sahayog_samarpan_chatgpt1_theme`, one conventional commit per step. No Cursor co-author trailer.
 
-- [ ] **1. Audit.** Read the live site and the files listed in SANSTHA-001. Confirm the “do not undo” list. Write the five confirmed weaknesses, the chosen compositions, and the list of files to change into this ticket. No page code in this commit. Then continue to task 2 without waiting; the brief asks for implementation, not a plan only. Stop only for a real blocker, such as missing content or a Marathi label that needs approval, and in that case keep the current label and carry on.
+- [x] **1. Audit.** Read the live site and the files listed in SANSTHA-001. Confirm the “do not undo” list. Write the five confirmed weaknesses, the chosen compositions, and the list of files to change into this ticket. No page code in this commit. Then continue to task 2 without waiting; the brief asks for implementation, not a plan only. Stop only for a real blocker, such as missing content or a Marathi label that needs approval, and in that case keep the current label and carry on.
 - [ ] **2. Shared elevation.** Adjust tokens, letterhead, footer, heading, focus, and image frame only where the audit found a real weakness. Preserve every contract in the precedence table.
 - [ ] **3. Home.** Compose the opening and the two featured visits. Keep section order.
 - [ ] **4. Our Work.**
