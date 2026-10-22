@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import ContentImage from "@/components/ContentImage";
+import PageHeading from "@/components/PageHeading";
 import { galleryAlbums } from "@/data/gallery";
 
 export const metadata: Metadata = {
@@ -10,66 +11,50 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="bg-white">
-      <section className="bg-brand-navy py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="font-marathi text-brand-gold">गॅलरी</p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
-            Gallery
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-white/70">
-            Moments from our seva activities, community visits and events.
-          </p>
-        </div>
-      </section>
+    <div>
+      <PageHeading
+        titleMr="गॅलरी"
+        title="Gallery"
+        description="Moments from our seva, community visits, and events. Each photograph is shown in full."
+      />
 
-      <div className="mx-auto max-w-6xl space-y-16 px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
         {galleryAlbums.map((album) => (
           <section key={album.id} id={album.id}>
-            <div className="mb-8">
-              <p className="font-marathi text-brand-saffron">{album.titleMr}</p>
-              <h2 className="mt-1 text-2xl font-bold text-brand-navy sm:text-3xl">
+            <h2>
+              <span className="font-display-mr block text-3xl leading-tight text-brand-navy">
+                {album.titleMr}
+              </span>
+              <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
                 {album.title}
-              </h2>
-              <div className="mt-4 h-1 w-16 rounded-full bg-brand-saffron" />
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              </span>
+            </h2>
+            <ul className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
               {album.images.map((image) => (
-                <figure
-                  key={image.id}
-                  className="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-lg"
-                >
-                  <div className="relative aspect-[4/3] w-full bg-brand-cream">
-                    <Image
+                <li key={image.id} className="min-w-0">
+                  <figure className="border border-rule bg-paper">
+                    <ContentImage
                       src={image.src}
                       alt={image.alt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                      className={
-                        image.fit === "contain"
-                          ? "object-contain"
-                          : "object-cover transition-transform duration-300 group-hover:scale-105"
-                      }
+                      sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
+                      fit="contain"
                     />
-                  </div>
-                  {(image.caption || image.captionMr) && (
-                    <figcaption className="p-4">
-                      {image.caption && (
-                        <p className="text-sm font-medium text-brand-navy">
-                          {image.caption}
-                        </p>
-                      )}
-                      {image.captionMr && (
-                        <p className="font-marathi mt-1 text-xs text-brand-saffron">
-                          {image.captionMr}
-                        </p>
-                      )}
-                    </figcaption>
-                  )}
-                </figure>
+                    {(image.caption || image.captionMr) && (
+                      <figcaption className="border-t border-rule p-4">
+                        {image.captionMr && (
+                          <p className="font-marathi text-base leading-7 text-brand-navy">
+                            {image.captionMr}
+                          </p>
+                        )}
+                        {image.caption && (
+                          <p className="mt-1 text-sm leading-6 text-ink-soft">{image.caption}</p>
+                        )}
+                      </figcaption>
+                    )}
+                  </figure>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
         ))}
       </div>

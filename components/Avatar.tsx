@@ -6,11 +6,13 @@ import Image from "next/image";
 interface AvatarProps {
   name: string;
   photo?: string;
-  /** Passport-style portrait (3:4) vs round thumbnail. */
-  variant?: "passport" | "round";
+  /**
+   * Portrait frame is 3:4. The photograph is contained, not cropped,
+   * so a square or wider source keeps the whole face visible.
+   */
+  position?: string;
 }
 
-/** Returns up to two initials from a name, e.g. "Shubham Madke" -> "SM". */
 function getInitials(name: string): string {
   const parts = name.trim().split(/\s+/);
   const first = parts[0]?.[0] ?? "";
@@ -18,43 +20,29 @@ function getInitials(name: string): string {
   return (first + last).toUpperCase();
 }
 
-export default function Avatar({ name, photo, variant = "passport" }: AvatarProps) {
-  // If the image fails to load (file not added yet), fall back to initials.
+export default function Avatar({ name, photo, position }: AvatarProps) {
   const [failed, setFailed] = useState(false);
-  const showImage = photo && !failed;
+  const showImage = Boolean(photo && !failed);
 
-  const shape =
-    variant === "passport"
-      ? "aspect-[3/4] w-full rounded-lg"
-      : "h-16 w-16 rounded-full";
-
-  if (showImage) {
-    return (
-      <div className={`relative overflow-hidden bg-brand-cream ${shape}`}>
+  return (
+    <div className="relative aspect-[3/4] w-full bg-paper-deep">
+      {showImage && photo ? (
         <Image
           src={photo}
           alt={name}
           fill
-          sizes="(max-width: 768px) 50vw, 200px"
-          className="object-cover"
+          sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 20rem"
+          className="object-contain"
+          style={position ? { objectPosition: position } : undefined}
           onError={() => setFailed(true)}
         />
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className={`flex items-center justify-center bg-brand-navy/10 ${shape}`}
-      aria-label={name}
-    >
-      <span
-        className={`font-semibold text-brand-navy ${
-          variant === "passport" ? "text-4xl" : "text-lg"
-        }`}
-      >
-        {getInitials(name)}
-      </span>
+      ) : (
+        <div className="flex h-full items-center justify-center" aria-label={name}>
+          <span className="font-display-en text-4xl font-medium text-brand-navy">
+            {getInitials(name)}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Avatar from "@/components/Avatar";
-import { managingCommittee, projectTeams, members } from "@/data/team";
+import PageHeading from "@/components/PageHeading";
+import { managingCommittee, members, projectTeams } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Our Team",
@@ -10,131 +11,90 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <div className="bg-white">
-      {/* Page header */}
-      <section className="bg-brand-navy py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="font-marathi text-brand-gold">आमची टीम</p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
-            Our Team
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-white/70">
-            The dedicated people leading Sahayog Samarpan Seva Foundation and driving
-            our work across education, health, sports and outreach.
-          </p>
-        </div>
-      </section>
+    <div>
+      <PageHeading
+        titleMr="आमची टीम"
+        title="Our Team"
+        description="The people who keep Sahayog Samarpan Seva Foundation and its work in education, health, sports, and outreach."
+      />
 
-      {/* Managing Committee — passport photos */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-brand-navy sm:text-3xl">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <h2>
+          <span className="font-display-mr block text-3xl text-brand-navy">व्यवस्थापन समिती</span>
+          <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
             Managing Committee
-          </h2>
-          <p className="font-marathi mt-1 text-brand-saffron">
-            व्यवस्थापन समिती
-          </p>
-          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
-        </div>
-
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6 lg:grid-cols-5">
+          </span>
+        </h2>
+        <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {managingCommittee.map((member) => (
-            <div
-              key={member.role ?? member.name}
-              className="flex flex-col rounded-xl border border-black/5 bg-white p-3 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <Avatar
-                name={member.name}
-                photo={member.photo}
-                variant="passport"
-              />
-              <div className="mt-3 text-center">
-                <h3 className="text-sm font-semibold text-brand-navy">
-                  {member.name}
-                </h3>
-                {member.role && (
-                  <p className="mt-0.5 text-xs font-medium text-brand-saffron">
-                    {member.role}
-                  </p>
-                )}
-                {member.roleMr && (
-                  <p className="font-marathi text-xs text-gray-500">
-                    {member.roleMr}
-                  </p>
-                )}
-              </div>
-            </div>
+            <li key={member.role ?? member.name} className="min-w-0 border-t border-rule pt-5">
+              {member.photo && <Avatar name={member.name} photo={member.photo} />}
+              <h3 className="mt-4 text-lg font-semibold leading-snug text-brand-navy">
+                {member.name}
+              </h3>
+              {member.roleMr && (
+                <p className="font-display-mr mt-1 text-lg leading-snug text-brand-navy">
+                  {member.roleMr}
+                </p>
+              )}
+              {member.role && <p className="mt-1 text-ink-soft">{member.role}</p>}
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      {/* Project Heads & teams — portfolio-wise, names only under each heading */}
-      <section className="bg-brand-cream py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-2xl font-bold text-brand-navy sm:text-3xl">
-              Project Heads &amp; Teams
-            </h2>
-            <p className="font-marathi mt-1 text-brand-saffron">
+      <section className="border-t border-rule bg-paper-deep">
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2>
+            <span className="font-display-mr block text-3xl text-brand-navy">
               प्रकल्प प्रमुख व टीम
-            </p>
-            <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
-          </div>
-
-          <div className="space-y-12">
+            </span>
+            <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
+              Project heads and teams
+            </span>
+          </h2>
+          <div className="mt-10 space-y-10">
             {projectTeams.map((group) => (
-              <div key={group.title}>
-                <div className="mb-5 flex items-baseline gap-3 border-b border-brand-navy/10 pb-2">
-                  <h3 className="text-lg font-semibold text-brand-navy">
-                    {group.title}
-                  </h3>
+              <section key={group.title}>
+                <h3 className="border-b border-rule pb-2">
                   {group.titleMr && (
-                    <span className="font-marathi text-sm text-gray-500">
+                    <span className="font-display-mr block text-2xl leading-tight text-brand-navy">
                       {group.titleMr}
                     </span>
                   )}
-                </div>
-
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {group.members.map((member, idx) => (
-                    <div
-                      key={`${member.name}-${idx}`}
-                      className="flex items-center gap-4 rounded-lg bg-white p-4 shadow-sm"
+                  <span className="mt-1 block text-lg text-ink">{group.title}</span>
+                </h3>
+                <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+                  {group.members.map((member, index) => (
+                    <li
+                      key={`${member.name}-${index}`}
+                      className="min-w-0 border-b border-rule py-3 text-base leading-6 text-ink"
                     >
-                      <Avatar name={member.name} variant="round" />
-                      <p className="font-semibold text-brand-navy">
-                        {member.name}
-                      </p>
-                    </div>
+                      {member.name}
+                    </li>
                   ))}
-                </div>
-              </div>
+                </ul>
+              </section>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Members */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-brand-navy sm:text-3xl">
-            Members
-          </h2>
-          <p className="font-marathi mt-1 text-brand-saffron">सदस्य</p>
-          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-brand-saffron" />
-        </div>
-
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2>
+          <span className="font-display-mr block text-3xl text-brand-navy">सदस्य</span>
+          <span className="font-display-en mt-1 block text-2xl font-medium text-ink">Members</span>
+        </h2>
+        <ul className="mt-6 grid grid-cols-1 border-t border-rule sm:grid-cols-2 xl:grid-cols-3">
           {members.map((member) => (
-            <div
+            <li
               key={member.name}
-              className="flex items-center gap-4 rounded-lg border border-black/5 bg-white p-4 shadow-sm"
+              className="min-w-0 border-b border-rule py-3 text-base leading-6 text-ink"
             >
-              <Avatar name={member.name} variant="round" />
-              <p className="font-semibold text-brand-navy">{member.name}</p>
-            </div>
+              {member.name}
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </div>
   );
