@@ -96,10 +96,10 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`inline-flex min-h-11 items-center border-b-2 px-2 text-sm font-medium ${
+                className={`inline-flex min-h-11 items-center border-b-2 px-2 text-sm font-medium transition-colors duration-150 ${
                   isActive(item.href)
                     ? "border-brand-gold-ink text-brand-navy"
-                    : "border-transparent text-ink"
+                    : "border-transparent text-ink hover:text-brand-navy"
                 }`}
               >
                 {item.label}

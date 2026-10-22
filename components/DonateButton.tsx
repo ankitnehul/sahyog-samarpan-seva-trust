@@ -12,7 +12,7 @@ export default function DonateButton({ fullWidth = false }: DonateButtonProps) {
       aria-disabled="true"
       title="Donations coming soon"
       onClick={(event) => event.preventDefault()}
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-rule bg-transparent px-4 text-sm font-medium text-ink-soft ${
+      className={`inline-flex min-h-11 cursor-not-allowed items-center justify-center gap-2 rounded-md border border-rule bg-transparent px-4 text-sm font-medium text-ink-soft transition-colors duration-150 hover:border-brand-navy hover:text-brand-navy active:border-brand-saffron-text active:text-brand-saffron-text ${
         fullWidth ? "w-full" : ""
       }`}
     >

@@ -31,18 +31,21 @@ export default function Footer() {
   return (
     <footer className="bg-brand-navy text-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <p className="font-display-mr text-[clamp(2rem,5vw,3.25rem)] leading-tight text-brand-gold">
-          {siteConfig.taglineMr}
-        </p>
-        <p className="font-display-en mt-2 text-xl font-medium text-white">
-          {siteConfig.taglineEn}
-        </p>
-
-        <div className="mt-10 grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="flex items-start gap-4">
+          <Seal className="h-14 w-[3.2rem]" sizes="64px" />
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold tracking-wide text-brand-gold">
-              आमचे कार्यक्षेत्र
-            </h2>
+            <p className="font-display-mr text-[clamp(2rem,5vw,3.25rem)] leading-tight text-brand-gold">
+              {siteConfig.taglineMr}
+            </p>
+            <p className="font-display-en mt-2 text-xl font-medium text-white">
+              {siteConfig.taglineEn}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-10 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="min-w-0">
+            <h2 className="text-base font-medium text-brand-gold">आमचे कार्यक्षेत्र</h2>
             <ul className="mt-4 space-y-2">
               {focusAreas.map((area) => (
                 <li key={area.id} className="text-sm leading-6 text-white">
@@ -54,9 +57,7 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold tracking-wide text-brand-gold">
-              पृष्ठे
-            </h2>
+            <h2 className="text-base font-medium text-brand-gold">पृष्ठे</h2>
             <ul className="mt-4 space-y-1">
               {siteConfig.nav.map((item) => (
                 <li key={item.href}>
@@ -73,9 +74,7 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold tracking-wide text-brand-gold">
-              संपर्क
-            </h2>
+            <h2 className="text-base font-medium text-brand-gold">संपर्क</h2>
             <ul className="mt-4 space-y-3 text-sm leading-6 text-white">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
@@ -95,15 +94,9 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
-
-          <div className="min-w-0">
-            <div className="flex items-center gap-3">
-              <Seal className="h-14 w-[3.2rem]" sizes="64px" />
-              <p className="font-display-en text-lg font-medium leading-tight">
-                {siteConfig.shortName}
-              </p>
-            </div>
+            <p className="font-display-en mt-6 text-lg font-medium leading-tight">
+              {siteConfig.shortName}
+            </p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {siteConfig.social.map((item) => {
                 const Icon = socialIcons[item.platform];
@@ -114,7 +107,7 @@ export default function Footer() {
                       aria-label={item.label}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-11 min-w-11 items-center justify-center bg-white/10"
+                      className="inline-flex min-h-11 min-w-11 items-center justify-center bg-white/10 transition-colors duration-150 hover:bg-white/20 active:bg-white/30"
                     >
                       <Icon className="h-4 w-4" aria-hidden="true" />
                     </a>

@@ -6,7 +6,7 @@ interface PageHeadingProps {
 
 export default function PageHeading({ titleMr, title, description }: PageHeadingProps) {
   return (
-    <header className="mx-auto w-full max-w-7xl px-4 pb-8 pt-10 sm:px-6 lg:px-8">
+    <header className="mx-auto w-full max-w-7xl px-4 pb-6 pt-8 sm:px-6 sm:pt-10 lg:px-8">
       <h1 className="max-w-4xl text-brand-navy">
         <span className="font-display-mr block text-[clamp(2.25rem,6vw,3.5rem)] leading-[1.15]">
           {titleMr}

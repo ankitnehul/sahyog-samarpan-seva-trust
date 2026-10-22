@@ -63,6 +63,37 @@ body {
   outline-offset: 3px;
 }
 
+/* Text links. Hover and active change color only, for 150ms. */
+.link-rule {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border-bottom: 2px solid var(--color-brand-gold-ink);
+  color: var(--color-brand-navy);
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.link-rule:hover {
+  border-bottom-color: var(--color-brand-saffron-text);
+  color: var(--color-brand-saffron-text);
+}
+
+.link-rule:active {
+  border-bottom-color: var(--color-brand-saffron-action);
+  color: var(--color-brand-saffron-action);
+}
+
+.link-rule-on-navy {
+  border-bottom-color: var(--color-brand-gold);
+  color: #fff;
+}
+
+.link-rule-on-navy:hover,
+.link-rule-on-navy:active {
+  border-bottom-color: var(--color-brand-gold);
+  color: var(--color-brand-gold);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
