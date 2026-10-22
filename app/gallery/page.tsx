@@ -42,12 +42,12 @@ export default function GalleryPage() {
                     {(image.caption || image.captionMr) && (
                       <figcaption className="border-t border-rule p-4">
                         {image.captionMr && (
-                          <p className="font-marathi text-base leading-7 text-brand-navy">
-                            {image.captionMr}
-                          </p>
-                        )}
-                        {image.caption && (
-                          <p className="mt-1 text-sm leading-6 text-ink-soft">{image.caption}</p>
+                        <p className="font-marathi text-lg leading-8 text-brand-navy">
+                          {image.captionMr}
+                        </p>
+                      )}
+                      {image.caption && (
+                        <p className="mt-1 text-base leading-7 text-ink-soft">{image.caption}</p>
                         )}
                       </figcaption>
                     )}

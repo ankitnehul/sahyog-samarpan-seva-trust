@@ -97,7 +97,7 @@ export default function Home() {
                   {latest.title}
                 </span>
               </h2>
-              <p className="font-marathi mt-4 max-w-prose text-base leading-8">
+              <p className="font-marathi mt-4 text-lg leading-9 sm:text-xl sm:leading-10">
                 {latest.description[0]}
               </p>
               <Link
@@ -192,9 +192,9 @@ export default function Home() {
                     </span>
                   </h3>
                   {event.location && <p className="mt-2 text-ink-soft">{event.location}</p>}
-                  <p className="mt-3 text-base leading-7">{event.description}</p>
+                  <p className="mt-3 text-lg leading-8 sm:text-xl sm:leading-9">{event.description}</p>
                   {event.descriptionMr && (
-                    <p className="font-marathi mt-3 text-base leading-8">{event.descriptionMr}</p>
+                    <p className="font-marathi mt-3 text-lg leading-9 sm:text-xl sm:leading-10">{event.descriptionMr}</p>
                   )}
                 </article>
               ))}

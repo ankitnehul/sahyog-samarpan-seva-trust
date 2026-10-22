@@ -41,7 +41,7 @@ export default function EventCard({ event }: EventCardProps) {
         </div>
       )}
 
-      <div className="font-marathi mt-6 max-w-prose space-y-4 text-base leading-8">
+      <div className="font-marathi mt-6 space-y-5 text-lg leading-9 sm:text-xl sm:leading-10">
         {event.description.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}

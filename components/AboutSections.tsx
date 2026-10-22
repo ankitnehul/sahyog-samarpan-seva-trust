@@ -14,7 +14,7 @@ function isGovernance(title: string) {
 export function AboutSections({ content, marathi = false }: AboutSectionsProps) {
   return (
     <div className={marathi ? "font-marathi" : undefined}>
-      <p className="max-w-prose text-base leading-8">{content.intro}</p>
+      <p className="max-w-3xl text-lg leading-9 sm:text-xl sm:leading-10">{content.intro}</p>
 
       <div className="mt-10 space-y-10">
         {content.sections.map((section) => {
@@ -39,7 +39,7 @@ export function AboutSections({ content, marathi = false }: AboutSectionsProps) 
               </h2>
 
               {governance && (
-                <p className="mt-4 max-w-prose text-base leading-7">
+                <p className="mt-4 max-w-3xl text-lg leading-8 sm:text-xl sm:leading-9">
                   {marathi
                     ? `सामान्य सदस्यत्व ${siteConfig.fees.ordinary} · आजीवन सदस्यत्व ${siteConfig.fees.lifetime}.`
                     : `Ordinary membership ${siteConfig.fees.ordinary}. Lifetime membership ${siteConfig.fees.lifetime}.`}
@@ -47,7 +47,7 @@ export function AboutSections({ content, marathi = false }: AboutSectionsProps) 
               )}
 
               {section.paragraphs && (
-                <div className="mt-4 max-w-prose space-y-4 text-base leading-8">
+                <div className="mt-4 max-w-3xl space-y-5 text-lg leading-9 sm:text-xl sm:leading-10">
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
@@ -55,7 +55,7 @@ export function AboutSections({ content, marathi = false }: AboutSectionsProps) 
               )}
 
               {section.bullets && (
-                <ul className="mt-4 max-w-prose space-y-3 text-base leading-8">
+                <ul className="mt-4 max-w-3xl space-y-4 text-lg leading-9 sm:text-xl sm:leading-10">
                   {section.bullets.map((item) => (
                     <li key={item} className="border-t border-rule pt-3">
                       {item}
