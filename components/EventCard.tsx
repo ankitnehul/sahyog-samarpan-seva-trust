@@ -1,8 +1,16 @@
 import ContentImage from "@/components/ContentImage";
+import { imageFrame } from "@/lib/image-frame";
 import type { WorkEvent } from "@/types";
 
 interface EventCardProps {
   event: WorkEvent;
+}
+
+function frameClass(src: string) {
+  const frame = imageFrame(src);
+  if (frame === "wide") return "mt-6 border border-rule bg-paper-deep";
+  if (frame === "portrait") return "mt-6 max-w-sm border border-rule bg-paper-deep";
+  return "mt-6 max-w-3xl border border-rule bg-paper-deep";
 }
 
 export default function EventCard({ event }: EventCardProps) {
@@ -21,7 +29,7 @@ export default function EventCard({ event }: EventCardProps) {
         </span>
       </h2>
 
-      <div className="mt-6 border border-rule bg-paper-deep">
+      <div className={frameClass(event.photo)}>
         <ContentImage
           src={event.photo}
           alt={event.title}
@@ -31,7 +39,7 @@ export default function EventCard({ event }: EventCardProps) {
         />
       </div>
       {event.secondaryPhoto && (
-        <div className="mt-4 border border-rule bg-paper-deep">
+        <div className={frameClass(event.secondaryPhoto)}>
           <ContentImage
             src={event.secondaryPhoto}
             alt=""
@@ -41,7 +49,7 @@ export default function EventCard({ event }: EventCardProps) {
         </div>
       )}
 
-      <div className="font-marathi mt-6 space-y-5 text-lg leading-9 sm:text-xl sm:leading-10">
+      <div className="font-marathi mt-6 max-w-3xl space-y-5 text-lg leading-9 sm:text-xl sm:leading-10">
         {event.description.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
