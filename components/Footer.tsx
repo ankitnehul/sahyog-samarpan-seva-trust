@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import {
   FaFacebookF,
@@ -9,6 +8,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import type { IconType } from "react-icons";
+import Seal from "@/components/Seal";
 import { focusAreas } from "@/data/focus-areas";
 import { siteConfig } from "@/data/site";
 import { toDevanagariDigits } from "@/lib/numerals";
@@ -99,13 +99,7 @@ export default function Footer() {
 
           <div className="min-w-0">
             <div className="flex items-center gap-3">
-              <Image
-                src={siteConfig.logo}
-                alt=""
-                width={931}
-                height={1024}
-                className="h-14 w-auto bg-paper object-contain p-1"
-              />
+              <Seal className="h-14 w-[3.2rem]" sizes="64px" />
               <p className="font-display-en text-lg font-medium leading-tight">
                 {siteConfig.shortName}
               </p>

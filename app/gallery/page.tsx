@@ -29,7 +29,7 @@ export default function GalleryPage() {
                 {album.title}
               </span>
             </h2>
-            <ul className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+            <ul className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {album.images.map((image) => (
                 <li key={image.id} className="min-w-0">
                   <figure className="border border-rule bg-paper">

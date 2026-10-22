@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import ContentImage from "@/components/ContentImage";
 import JoinLink from "@/components/JoinLink";
+import Seal from "@/components/Seal";
 import { focusAreas } from "@/data/focus-areas";
 import { workEvents } from "@/data/events";
 import { ongoingEvent } from "@/data/ongoing";
@@ -18,13 +18,11 @@ export default function Home() {
     <>
       <section className="bg-brand-navy text-white">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-          <Image
-            src={siteConfig.logo}
-            alt={`${siteConfig.name} seal`}
-            width={931}
-            height={1024}
+          <Seal
+            className="h-24 w-[5.5rem]"
+            sizes="96px"
             priority
-            className="h-24 w-auto max-w-full bg-paper object-contain p-1"
+            alt={`${siteConfig.name} seal`}
           />
           <div className="max-w-4xl">
             <h1>
@@ -121,12 +119,12 @@ export default function Home() {
               Areas of work
             </span>
           </h2>
-          <ul className="mt-8 grid grid-cols-1 border-t border-rule sm:grid-cols-2 xl:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 gap-x-8 border-t border-rule sm:grid-cols-2 lg:grid-cols-3">
             {focusAreas.map((area) => (
               <li
                 key={area.id}
-                className={`min-w-0 border-b border-rule py-5 sm:px-5 sm:odd:pl-0 xl:[&:nth-child(3n+1)]:pl-0 ${
-                  area.growth ? "border-l-4 border-l-brand-green-ink pl-4" : "pl-0 sm:pl-5"
+                className={`min-w-0 border-b border-rule py-5 ${
+                  area.growth ? "border-l-4 border-l-brand-green-ink pl-4" : ""
                 }`}
               >
                 <p className="font-display-mr text-2xl leading-tight text-brand-navy">

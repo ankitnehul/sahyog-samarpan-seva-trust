@@ -2,28 +2,25 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import DonateButton from "@/components/DonateButton";
 import JoinLink from "@/components/JoinLink";
+import Seal from "@/components/Seal";
 import { siteConfig } from "@/data/site";
 
 const desktopNavQuery = "(min-width: 1280px)";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [openPath, setOpenPath] = useState<string | null>(null);
   const pathname = usePathname();
+  const open = openPath === pathname;
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     const header = headerRef.current;
@@ -57,7 +54,7 @@ export default function Navbar() {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpen(false);
+        setOpenPath(null);
         menuButtonRef.current?.focus();
       }
     };
@@ -68,7 +65,7 @@ export default function Navbar() {
   useEffect(() => {
     const media = window.matchMedia(desktopNavQuery);
     const onChange = () => {
-      if (media.matches) setOpen(false);
+      if (media.matches) setOpenPath(null);
     };
     media.addEventListener("change", onChange);
     return () => media.removeEventListener("change", onChange);
@@ -84,14 +81,7 @@ export default function Navbar() {
         className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-2 sm:px-6 lg:px-8"
       >
         <Link href="/" className="flex min-w-0 flex-1 items-center gap-3">
-          <Image
-            src={siteConfig.logo}
-            alt=""
-            width={931}
-            height={1024}
-            priority
-            className="h-12 w-auto max-w-12 object-contain"
-          />
+          <Seal className="h-12 w-11" sizes="48px" priority />
           <span className="min-w-0 leading-tight">
             <span className="font-display-mr block text-base text-brand-navy sm:text-lg">
               {siteConfig.nameMr}
@@ -129,7 +119,7 @@ export default function Navbar() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls={menuId}
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => setOpenPath(open ? null : pathname)}
           className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-brand-navy xl:hidden"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
