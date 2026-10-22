@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EventCard from "@/components/EventCard";
+import PageHeading from "@/components/PageHeading";
 import { workEvents } from "@/data/events";
 
 export const metadata: Metadata = {
@@ -10,29 +11,36 @@ export const metadata: Metadata = {
 
 export default function OurWorkPage() {
   return (
-    <div className="bg-white">
-      {/* Page header */}
-      <section className="bg-brand-navy py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="font-marathi text-brand-gold">आमचे कार्य</p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
-            Our Work
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-white/70">
-            A glimpse of the activities and seva carried out by Sahayog Samarpan
-            Seva Foundation — serving the community, one initiative at a time.
-          </p>
-        </div>
-      </section>
+    <div>
+      <PageHeading
+        titleMr="आमचे कार्य"
+        title="Our Work"
+        description="A record of the seva carried out by Sahayog Samarpan Seva Foundation, newest visit first."
+      />
 
-      {/* Events timeline (newest first) */}
-      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="space-y-10">
-          {workEvents.map((event, idx) => (
-            <EventCard key={event.id} event={event} reverse={idx % 2 === 1} />
-          ))}
-        </div>
-      </section>
+      <ol className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        {workEvents.map((event, index) => {
+          const year = event.date.slice(0, 4);
+          const showYear = index === 0 || workEvents[index - 1].date.slice(0, 4) !== year;
+
+          return (
+            <li
+              key={event.id}
+              id={event.id}
+              className="border-t border-rule py-10 lg:grid lg:grid-cols-[6.5rem_minmax(0,1fr)] lg:gap-10"
+            >
+              <div className={showYear ? undefined : "hidden lg:block"}>
+                {showYear && (
+                  <p className="font-display-en text-2xl font-medium text-brand-gold-ink lg:sticky lg:top-[calc(var(--header-offset)+1.5rem)]">
+                    {year}
+                  </p>
+                )}
+              </div>
+              <EventCard event={event} />
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }
