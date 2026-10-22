@@ -23,9 +23,13 @@ export default function ContactPage() {
         description="Reach Sahayog Samarpan Seva Foundation, join the WhatsApp community, or become a member."
       />
 
-      <div className="mx-auto w-full max-w-3xl px-4 pb-16 sm:px-6">
+      <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
         {contact.whatsappCommunity && (
-          <section className="border-t border-rule py-8">
+          <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
+            <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
+              १
+            </p>
+            <div>
             <h2>
               <span className="font-display-mr block text-3xl text-brand-navy">व्हॉट्सॲप समुदाय</span>
               <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
@@ -44,10 +48,15 @@ export default function ContactPage() {
               <FaWhatsapp className="h-5 w-5" aria-hidden="true" />
               Join WhatsApp community
             </a>
+            </div>
           </section>
         )}
 
-        <section className="border-t border-rule py-8">
+        <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
+          <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
+            २
+          </p>
+          <div>
           <h2>
             <span className="font-display-mr block text-3xl text-brand-navy">सदस्यत्व</span>
             <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
@@ -61,9 +70,14 @@ export default function ContactPage() {
           <div className="mt-5">
             <JoinLink />
           </div>
+          </div>
         </section>
 
-        <section className="border-t border-rule py-8">
+        <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
+          <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
+            ३
+          </p>
+          <div>
           <h2>
             <span className="font-display-mr block text-3xl text-brand-navy">संपर्क माहिती</span>
             <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
@@ -131,6 +145,7 @@ export default function ContactPage() {
               </li>
             )}
           </ul>
+          </div>
         </section>
       </div>
     </div>

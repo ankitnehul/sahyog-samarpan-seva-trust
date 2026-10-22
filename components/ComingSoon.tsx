@@ -25,7 +25,7 @@ export default function ComingSoon({
         <p className="mt-8">
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center border-b-2 border-brand-gold-ink text-brand-navy"
+            className="link-rule"
           >
             मुख्यपृष्ठ · Back to home
           </Link>

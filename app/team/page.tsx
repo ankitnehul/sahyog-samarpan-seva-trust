@@ -25,19 +25,26 @@ export default function TeamPage() {
             Managing Committee
           </span>
         </h2>
-        <ul className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="mt-8 border-t border-rule">
           {managingCommittee.map((member) => (
-            <li key={member.role ?? member.name} className="min-w-0 border-t border-rule pt-5">
-              {member.photo && <Avatar name={member.name} photo={member.photo} />}
-              <h3 className="mt-4 text-lg font-semibold leading-snug text-brand-navy">
-                {member.name}
-              </h3>
-              {member.roleMr && (
-                <p className="font-display-mr mt-1 text-lg leading-snug text-brand-navy">
-                  {member.roleMr}
-                </p>
+            <li
+              key={member.role ?? member.name}
+              className="grid min-w-0 grid-cols-1 gap-4 border-b border-rule py-6 sm:grid-cols-[11rem_minmax(0,1fr)] sm:items-center"
+            >
+              {member.photo && (
+                <div className="w-full max-w-[11rem]">
+                  <Avatar name={member.name} photo={member.photo} />
+                </div>
               )}
-              {member.role && <p className="mt-1 text-ink-soft">{member.role}</p>}
+              <div className="min-w-0">
+                <h3 className="text-lg font-semibold leading-snug text-brand-navy">{member.name}</h3>
+                {member.roleMr && (
+                  <p className="font-display-mr mt-1 text-lg leading-snug text-brand-navy">
+                    {member.roleMr}
+                  </p>
+                )}
+                {member.role && <p className="mt-1 text-ink-soft">{member.role}</p>}
+              </div>
             </li>
           ))}
         </ul>
