@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Type | feat (design system and page structure) |
-| Status | Ready, not started |
+| Status | Implemented on `sahayog_samarpan_sanstha_template`. Preview review and merge are still open. |
 | Repository | `sahyog-seva-foundation` (Next.js 16, React 19, Tailwind v4) |
 | Work branch | `sahayog_samarpan_sanstha_template` |
 | Snapshot of the old design | `sahayog_samarpan_first_template` (commit `baf8441`) |
@@ -194,15 +194,26 @@ Restyle to the new heading and paper so any placeholder page matches.
 
 Do these in order, with one commit per step, using conventional commits (for example, `feat(design): add Sanstha type and color tokens`). Do not add any Cursor co-author trailer.
 
-- [ ] **1. Foundations.** Fonts in `layout.tsx`, tokens in `globals.css`, `data/focus-areas.ts`, membership URL and fees in `siteConfig`.
-- [ ] **2. Shared components.** Letterhead `Navbar`, `PageHeading`, closing `Footer`.
-- [ ] **3. Home.**
-- [ ] **4. Our Work** and `EventCard`.
-- [ ] **5. About** and `AboutSections`.
-- [ ] **6. Team, Gallery, Contact,** and `ComingSoon`.
-- [ ] **7. Clean up.** Remove unused classes, the unused `reverse` prop, and the Plus Jakarta import.
-- [ ] **8. Verify responsive layout and images** using the matrix below; fix every failure before preview review.
+- [x] **1. Foundations.** Fonts in `layout.tsx`, tokens in `globals.css`, `data/focus-areas.ts`, membership URL and fees in `siteConfig`.
+- [x] **2. Shared components.** Letterhead `Navbar`, `PageHeading`, closing `Footer`.
+- [x] **3. Home.**
+- [x] **4. Our Work** and `EventCard`.
+- [x] **5. About** and `AboutSections`.
+- [x] **6. Team, Gallery, Contact,** and `ComingSoon`.
+- [x] **7. Clean up.** Remove unused classes, the unused `reverse` prop, and the Plus Jakarta import.
+- [x] **8. Verify responsive layout and images** using the matrix below; fix every failure before preview review.
 - [ ] **9. Ship.** Push `sahayog_samarpan_sanstha_template`, review the Vercel preview deployment, then merge into `main`.
+
+### Verification record — 22 October 2026
+
+- `npm run lint` and `npm run build` passed. All six routes prerendered.
+- Production server checked in Chrome through the IDE browser.
+- 320px and 390px home: no horizontal overflow. Header wraps the foundation name. Menu button is the only navigation control.
+- 1280px and 1440px: one navigation row, menu button hidden, no horizontal overflow.
+- Our Work at 320px: every event photograph keeps its own ratio (`object-fit: contain`), including the square Diwali 2024 photograph and the wide workshop photographs.
+- The home seal was stretching under `max-w-full` combined with a fixed height. It now sits in a sized frame (`components/Seal.tsx`) and is contained, not cropped.
+- Saffron text and the Join button use darker seal-derived colors so body text and button labels clear 4.5:1. The WhatsApp button keeps its brand green with ink text.
+- Not yet done: Lighthouse, a full seven-width screenshot set, real iOS Safari, and the Vercel preview. Do those before merging into `main`.
 
 ## Acceptance criteria
 
