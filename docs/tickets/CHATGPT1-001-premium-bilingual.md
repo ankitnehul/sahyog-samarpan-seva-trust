@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Type | feat (visual elevation of the existing Sanstha site) |
-| Status | In progress. Audit recorded 22 October 2026. |
+| Status | Implemented on `sahayog_samarpan_chatgpt1_theme`. Preview review is open. Do not merge until that preview is approved. |
 | Repository | `sahyog-seva-foundation` (Next.js 16, React 19, Tailwind v4) |
 | Parent ticket | [SANSTHA-001](./SANSTHA-001-sanstha-redesign.md) |
 | Work branch | `sahayog_samarpan_chatgpt1_theme` |
@@ -222,13 +222,13 @@ Files to change: `app/globals.css`, `components/Navbar.tsx`, `components/Footer.
 Do these in order, on `sahayog_samarpan_chatgpt1_theme`, one conventional commit per step. No Cursor co-author trailer.
 
 - [x] **1. Audit.** Read the live site and the files listed in SANSTHA-001. Confirm the “do not undo” list. Write the five confirmed weaknesses, the chosen compositions, and the list of files to change into this ticket. No page code in this commit. Then continue to task 2 without waiting; the brief asks for implementation, not a plan only. Stop only for a real blocker, such as missing content or a Marathi label that needs approval, and in that case keep the current label and carry on.
-- [ ] **2. Shared elevation.** Adjust tokens, letterhead, footer, heading, focus, and image frame only where the audit found a real weakness. Preserve every contract in the precedence table.
-- [ ] **3. Home.** Compose the opening and the two featured visits. Keep section order.
-- [ ] **4. Our Work.**
-- [ ] **5. About.**
-- [ ] **6. Team, Gallery, Contact,** and `ComingSoon`, so a placeholder cannot fall back to the old banner.
-- [ ] **7. Clean up.** Remove unused classes and imports introduced by this work. Do not remove SANSTHA-001 pieces that are still used.
-- [ ] **8. Verify** with the matrix below, then run the final quality review. Fix failures and refine the weakest section before any preview.
+- [x] **2. Shared elevation.** Adjust tokens, letterhead, footer, heading, focus, and image frame only where the audit found a real weakness. Preserve every contract in the precedence table.
+- [x] **3. Home.** Compose the opening and the two featured visits. Keep section order.
+- [x] **4. Our Work.**
+- [x] **5. About.**
+- [x] **6. Team, Gallery, Contact,** and `ComingSoon`, so a placeholder cannot fall back to the old banner.
+- [x] **7. Clean up.** Remove unused classes and imports introduced by this work. Do not remove SANSTHA-001 pieces that are still used. Lint reported none.
+- [x] **8. Verify** with the matrix below, then run the final quality review. Fix failures and refine the weakest section before any preview.
 - [ ] **9. Ship.** Push this branch, review the Vercel preview at phone and desktop, then merge into `main` only after that preview is approved. Do not force-push `main`.
 
 ## Acceptance criteria
@@ -299,6 +299,32 @@ When the ticket is complete, report:
 - Every file changed.
 - Lint, build, viewport, keyboard, and Lighthouse results.
 - Missing authentic assets or content, including the English-only content and unapproved Marathi labels listed above.
+
+## Verification record — 22 October 2026
+
+- `npm run lint` passed. `npm run build` passed after clearing a stale font cache; all six routes prerendered. The first build failed on a corrupted Next font cache, not on this code.
+- Production server (`next start`) checked in the IDE browser.
+- Home at 390×844: no horizontal overflow. Menu is the only navigation control. First photograph top is at 425px, inside the 844px viewport, `object-fit: contain`. Footer headings have normal letter-spacing.
+- Home at 1440×900: no overflow. Desktop navigation is one row (header height 65px). Menu button is hidden. First photograph is inside the first viewport. Ganpati is the second featured visit. The recent list still starts at 1 August 2026.
+- Home, About, Our Work, Team, Gallery, and Contact at 320px: overflow 0.
+- Our Work photographs stay `contain`. At 1440px a wide file renders at 1071px and a 4:3 file at 767px. The Marathi account measure is 768px. Description type is 18px / 36px line height. Diwali 2024 natural size is 320×160 in the phone rendition, the wide lower photograph.
+- Team shows five contained portraits. Names and Marathi roles are complete.
+- Gallery dialog opens from a named button, focuses Close, shows the full image, and is 288px wide at 320px with no overflow. Closing returns focus to the opener. Escape is the native `<dialog>` behaviour; the IDE key event did not reach it, so that path was not re-tested with a real key.
+- Contact links: WhatsApp community, the `siteConfig` membership form, `tel:+918805566365`, and `mailto:sahayogsamarpanseva@gmail.com`.
+- Mobile menu opens, lists Marathi then English, and closes with Escape. Body scroll is restored.
+- Not run: Lighthouse, a full seven-width screenshot set, 200% zoom, reduced motion in the browser, and real iOS Safari. Do those on the preview before merging.
+
+### Final quality review
+
+1. Recognised as this sanstha: yes. The seal, motto, and real Balghar and Diwali photographs carry the pages.
+2. Home first impression: yes on phone and desktop. The motto and the first photograph share the first viewport.
+3. Art-directed: yes, within the letterhead system. It is not a new template.
+4. Marathi and English: readable and paired, except the English-only content listed below.
+5. Each page has its own rhythm (opening, record, quote, roll, gallery, numbered contact) on the same tokens.
+6. Photographs: complete, `contain`, different frames by real ratio.
+7. Mobile: menu, targets, and the dialog fit. No horizontal scroll at 320 or 390.
+8. Maintainable: events, gallery, team, and about still come from `data/`. A new photo needs only `image-meta.ts`.
+9. Routes, copy, fees, Donate, and the two featured visits are preserved.
 
 ## Branch and release notes
 
