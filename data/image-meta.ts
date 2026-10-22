@@ -17,6 +17,7 @@ export const imageMeta: Record<string, { width: number; height: number }> = {
   "/images/our-work/diwali-2023-matoshri.png": { width: 1024, height: 642 },
   "/images/our-work/diwali-2024-matoshri.png": { width: 1024, height: 512 },
   "/images/our-work/diwali-2025-anamprem.png": { width: 1024, height: 768 },
+  "/images/our-work/dussehra-balghar-2026.jpg": { width: 1024, height: 576 },
   "/images/our-work/ganpati-workshop-balghar-2026.jpg": { width: 1024, height: 768 },
   "/images/our-work/maharashtra-day-2026.png": { width: 1024, height: 768 },
   "/images/team/devdatta-zikre.png": { width: 819, height: 1024 },

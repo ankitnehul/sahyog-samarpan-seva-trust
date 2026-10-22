@@ -6,7 +6,7 @@ import { workEvents } from "@/data/events";
 export const metadata: Metadata = {
   title: "Our Work",
   description:
-    "Social welfare activities and initiatives by Sahayog Samarpan Seva Foundation — Ganpati workshop, art workshop, Diwali celebrations and more.",
+    "Social welfare activities and initiatives by Sahayog Samarpan Seva Foundation — Dussehra at Balghar, Ganpati workshop, art workshop, Diwali celebrations and more.",
 };
 
 export default function OurWorkPage() {

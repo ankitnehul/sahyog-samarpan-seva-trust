@@ -6,9 +6,24 @@ import type { GalleryAlbum } from "@/types";
  */
 export const galleryAlbums: GalleryAlbum[] = [
   {
+    id: "dussehra-balghar-2026",
+    title: "Dussehra at Balghar Prakalp",
+    titleMr: "दसऱ्याच्या रंगात उमलला बालघराचा आनंद",
+    images: [
+      {
+        id: "dussehra-balghar-group",
+        src: "/images/our-work/dussehra-balghar-2026.jpg",
+        alt: "Children and volunteers of Balghar Prakalp together for Dussehra",
+        caption: "Dussehra with the children of Balghar Prakalp",
+        captionMr: "बालघर प्रकल्पातील विद्यार्थ्यांसोबत दसरा",
+        fit: "contain",
+      },
+    ],
+  },
+  {
     id: "ganpati-workshop-balghar-2026",
-    title: "Ganpati Making Workshop",
-    titleMr: "गणपती मूर्ती कार्यशाळा — बालघर प्रकल्प",
+    title: "Thirty-one Ganpatis at Balghar",
+    titleMr: "३१ छोट्या हातांनी साकारलेले बाप्पा",
     images: [
       {
         id: "ganpati-workshop-idol",

@@ -10,9 +10,24 @@ import type { WorkEvent } from "@/types";
  */
 const events: WorkEvent[] = [
   {
+    id: "dussehra-balghar-2026",
+    title: "Dussehra colours and sweets at Balghar Prakalp",
+    titleMr: "दसऱ्याच्या रंगात उमलला बालघराचा आनंद",
+    date: "2026-10-20",
+    dateLabel: "20 October 2026",
+    location: "Balghar Prakalp, Tapovan Road, Ahilyanagar",
+    photo: "/images/our-work/dussehra-balghar-2026.jpg",
+    photoPosition: "center",
+    description: [
+      "दसऱ्याच्या शुभमुहूर्तावर सहयोग समर्पण सेवा फाउंडेशनतर्फे बालघर प्रकल्पातील विद्यार्थ्यांना प्रोत्साहन देत, पत्रे रंगवण्यासाठी रंग व इतर आवश्यक साहित्य भेट देण्यात आले.",
+      "परिसर सजवण्यासाठी फुलांच्या माळा बांधण्यात मदत केली आणि सर्वांना मिठाई वाटून सणाचा आनंद द्विगुणित केला.",
+      "छोट्याशा कृतीतून सहकार्याची भावना जपत, आनंद आणि सकारात्मकतेचा संदेश देण्याचा हा एक छोटासा प्रयत्न.",
+    ],
+  },
+  {
     id: "ganpati-workshop-balghar-2026",
-    title: "Ganpati Making Workshop at Balghar Prakalp",
-    titleMr: "३१ बाप्पांच्या रूपात एक सुंदर अनुभव",
+    title: "Thirty-one Ganpatis shaped at Balghar",
+    titleMr: "३१ छोट्या हातांनी साकारलेले बाप्पा",
     date: "2026-09-09",
     dateLabel: "9 September 2026",
     location: "Balghar Prakalp, Tapovan Road, Ahilyanagar",
