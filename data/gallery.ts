@@ -22,8 +22,8 @@ export const galleryAlbums: GalleryAlbum[] = [
   },
   {
     id: "ganpati-workshop-balghar-2026",
-    title: "Thirty-one Ganpatis at Balghar",
-    titleMr: "३१ छोट्या हातांनी साकारलेले बाप्पा",
+    title: "Thirty-one Ganpatis, symbols of the children's joy",
+    titleMr: "३१ बाप्पा — छोट्या कलाकारांच्या आनंदाचे प्रतीक",
     images: [
       {
         id: "ganpati-workshop-idol",

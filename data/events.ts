@@ -26,8 +26,8 @@ const events: WorkEvent[] = [
   },
   {
     id: "ganpati-workshop-balghar-2026",
-    title: "Thirty-one Ganpatis shaped at Balghar",
-    titleMr: "३१ छोट्या हातांनी साकारलेले बाप्पा",
+    title: "Thirty-one Ganpatis, symbols of the children's joy",
+    titleMr: "३१ बाप्पा — छोट्या कलाकारांच्या आनंदाचे प्रतीक",
     date: "2026-09-09",
     dateLabel: "9 September 2026",
     location: "Balghar Prakalp, Tapovan Road, Ahilyanagar",

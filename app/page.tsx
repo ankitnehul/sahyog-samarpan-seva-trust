@@ -10,8 +10,8 @@ import { upcomingEvents } from "@/data/upcoming";
 import { toDevanagariDigits } from "@/lib/numerals";
 
 export default function Home() {
-  const latest = workEvents[0];
-  const recent = workEvents.slice(1, 4);
+  const featured = workEvents.slice(0, 2);
+  const recent = workEvents.slice(2, 5);
   const established = toDevanagariDigits(siteConfig.establishedYear);
 
   return (
@@ -71,37 +71,42 @@ export default function Home() {
         </section>
       )}
 
-      {latest && (
-        <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      {featured.map((event, index) => (
+        <section
+          key={event.id}
+          className={`mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 ${
+            index > 0 ? "border-t border-rule" : ""
+          }`}
+        >
           <div className="grid items-start gap-6 lg:grid-cols-2 lg:gap-10">
             <div className="min-w-0 border border-rule bg-paper-deep">
               <ContentImage
-                src={latest.photo}
-                alt={latest.title}
+                src={event.photo}
+                alt={event.title}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                fit={latest.photoFit ?? "contain"}
-                position={latest.photoPosition}
-                priority
+                fit={event.photoFit ?? "contain"}
+                position={event.photoPosition}
+                priority={index === 0}
               />
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-medium text-brand-saffron-text">{latest.dateLabel}</p>
-              {latest.location && <p className="mt-2 text-ink-soft">{latest.location}</p>}
+              <p className="text-sm font-medium text-brand-saffron-text">{event.dateLabel}</p>
+              {event.location && <p className="mt-2 text-ink-soft">{event.location}</p>}
               <h2 className="mt-4">
-                {latest.titleMr && (
+                {event.titleMr && (
                   <span className="font-display-mr block text-[clamp(1.8rem,4vw,2.6rem)] leading-tight text-brand-navy">
-                    {latest.titleMr}
+                    {event.titleMr}
                   </span>
                 )}
                 <span className="font-display-en mt-2 block text-2xl font-medium leading-tight text-ink">
-                  {latest.title}
+                  {event.title}
                 </span>
               </h2>
               <p className="font-marathi mt-4 text-lg leading-9 sm:text-xl sm:leading-10">
-                {latest.description[0]}
+                {event.description[0]}
               </p>
               <Link
-                href={`/our-work#${latest.id}`}
+                href={`/our-work#${event.id}`}
                 className="mt-6 inline-flex min-h-11 items-center border-b-2 border-brand-gold-ink text-brand-navy"
               >
                 आमचे कार्य · Read this visit
@@ -109,7 +114,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      )}
+      ))}
 
       <section className="border-t border-rule">
         <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
