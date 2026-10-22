@@ -1,54 +1,115 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { HeartHandshake, Menu, UserPlus, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import DonateButton from "@/components/DonateButton";
+import JoinLink from "@/components/JoinLink";
 import { siteConfig } from "@/data/site";
 
-const membershipForm = "https://forms.gle/XJkS4AHdGHvAe7Ev7";
+const desktopNavQuery = "(min-width: 1280px)";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuId = useId();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const applyOffset = () => {
+      document.documentElement.style.setProperty(
+        "--header-offset",
+        `${header.getBoundingClientRect().height}px`,
+      );
+    };
+
+    applyOffset();
+    const observer = new ResizeObserver(applyOffset);
+    observer.observe(header);
+    window.addEventListener("resize", applyOffset);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", applyOffset);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  useEffect(() => {
+    const media = window.matchMedia(desktopNavQuery);
+    const onChange = () => {
+      if (media.matches) setOpen(false);
+    };
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        {/* Brand: logo + name */}
-        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-rule bg-paper"
+    >
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-2 sm:px-6 lg:px-8"
+      >
+        <Link href="/" className="flex min-w-0 flex-1 items-center gap-3">
           <Image
             src={siteConfig.logo}
-            alt={`${siteConfig.name} logo`}
-            width={48}
-            height={48}
+            alt=""
+            width={931}
+            height={1024}
             priority
-            className="h-11 w-11 rounded-full object-contain"
+            className="h-12 w-auto max-w-12 object-contain"
           />
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold text-brand-navy sm:text-base">
-              {siteConfig.name}
+          <span className="min-w-0 leading-tight">
+            <span className="font-display-mr block text-base text-brand-navy sm:text-lg">
+              {siteConfig.nameMr}
             </span>
-            <span className="font-marathi text-xs text-brand-saffron">
-              {siteConfig.taglineMr}
-            </span>
+            <span className="block text-sm text-ink-soft">{siteConfig.name}</span>
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden shrink-0 items-center gap-1 xl:flex">
           {siteConfig.nav.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={`inline-flex min-h-11 items-center border-b-2 px-2 text-sm font-medium ${
                   isActive(item.href)
-                    ? "text-brand-saffron"
-                    : "text-brand-navy hover:text-brand-saffron"
+                    ? "border-brand-gold-ink text-brand-navy"
+                    : "border-transparent text-ink"
                 }`}
               >
                 {item.label}
@@ -57,84 +118,51 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Membership + Donate CTAs and mobile toggle */}
-        <div className="flex items-center gap-2">
-          <a
-            href={membershipForm}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:inline-flex"
-          >
-            <UserPlus className="h-4 w-4" />
-            Join Us
-          </a>
-
-          <button
-            type="button"
-            disabled
-            title="Donations coming soon"
-            className="hidden cursor-not-allowed items-center gap-2 rounded-full bg-brand-saffron/60 px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
-          >
-            <HeartHandshake className="h-4 w-4" />
-            Donate
-            <span className="rounded-full bg-white/25 px-1.5 py-0.5 text-[10px] font-medium">
-              Soon
-            </span>
-          </button>
-
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-brand-navy hover:bg-brand-cream lg:hidden"
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
+          <JoinLink />
+          <DonateButton />
         </div>
+
+        <button
+          ref={menuButtonRef}
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={() => setOpen((value) => !value)}
+          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-brand-navy xl:hidden"
+        >
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </nav>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="border-t border-black/5 bg-white lg:hidden">
-          <ul className="mx-auto flex max-w-7xl flex-col px-4 py-2 sm:px-6">
+        <div
+          id={menuId}
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-rule bg-paper xl:hidden"
+        >
+          <ul className="mx-auto flex w-full max-w-7xl flex-col px-4 py-2 sm:px-6">
             {siteConfig.nav.map((item) => (
-              <li key={item.href}>
+              <li key={item.href} className="border-b border-rule">
                 <Link
                   href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={`flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium transition-colors ${
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  className={`flex min-h-11 items-baseline justify-between gap-4 py-2 ${
                     isActive(item.href)
-                      ? "bg-brand-cream text-brand-saffron"
-                      : "text-brand-navy hover:bg-brand-cream"
+                      ? "border-b-2 border-brand-gold-ink"
+                      : "border-b-2 border-transparent"
                   }`}
                 >
-                  {item.label}
-                  <span className="font-marathi text-xs text-gray-400">
+                  <span className="font-display-mr text-lg text-brand-navy">
                     {item.labelMr}
                   </span>
+                  <span className="shrink-0 text-sm text-ink-soft">{item.label}</span>
                 </Link>
               </li>
             ))}
-            <li className="px-3 py-3">
-              <a
-                href={membershipForm}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="mb-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              >
-                <UserPlus className="h-4 w-4" />
-                Join Us
-              </a>
-              <button
-                type="button"
-                disabled
-                className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-brand-saffron/60 px-4 py-2 text-sm font-semibold text-white"
-              >
-                <HeartHandshake className="h-4 w-4" />
-                Donate (Coming Soon)
-              </button>
+            <li className="flex flex-col gap-3 py-4">
+              <JoinLink fullWidth />
+              <DonateButton fullWidth />
             </li>
           </ul>
         </div>
