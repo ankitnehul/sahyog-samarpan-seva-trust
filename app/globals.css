@@ -1,38 +1,79 @@
 @import "tailwindcss";
 
 /*
-  Tailwind v4 theme tokens.
-  Every --color-* token here auto-generates utilities like `bg-brand-navy`,
-  `text-brand-saffron`, `border-brand-gold`, etc.
-  Colors are sampled from the trust logo.
+  Sanstha theme.
+  Seal colors stay on the brand-* tokens.
+  paper, ink, and rule are the reading surface.
+  saffron-action and gold-ink are the accessible forms of saffron and gold on paper.
 */
 @theme {
   --color-brand-navy: #1e2a5c;
   --color-brand-navy-dark: #141c42;
   --color-brand-saffron: #ef7c20;
   --color-brand-saffron-dark: #d96812;
+  --color-brand-saffron-text: #9a3412;
+  --color-brand-saffron-action: #c2410c;
   --color-brand-gold: #f5b81d;
+  --color-brand-gold-ink: #92600a;
   --color-brand-green: #6cae3e;
   --color-brand-green-dark: #4f8a2a;
+  --color-brand-green-ink: #3d6b4f;
   --color-brand-cream: #fbf9f4;
+  --color-paper: #f7f2e8;
+  --color-paper-deep: #efe7d6;
+  --color-ink: #1f1d1a;
+  --color-ink-soft: #5b564d;
+  --color-rule: rgb(30 42 92 / 0.15);
 
-  /* Fonts are injected by next/font in app/layout.tsx as CSS variables. */
-  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-sans: var(--font-source-sans), system-ui, sans-serif;
+  --font-display-en: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-display-mr: var(--font-tiro), serif;
+  --font-body-mr: var(--font-mukta), system-ui, sans-serif;
   --font-devanagari: var(--font-mukta), system-ui, sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1b1b1f;
+  --header-offset: 5rem;
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-padding-top: calc(var(--header-offset) + 1rem);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-offset) + 1rem);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-wrap: anywhere;
 }
 
-/* Use on any element containing Marathi (Devanagari) text. */
+/* Long Marathi reading text. */
 .font-marathi {
-  font-family: var(--font-devanagari);
+  font-family: var(--font-body-mr);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-gold-ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -157,6 +157,21 @@ export interface GalleryAlbum {
   images: GalleryImage[];
 }
 
+/** One area of the sanstha's work. */
+export interface FocusArea {
+  id: string;
+  label: string;
+  labelMr: string;
+  /** Green is used only for areas marked as growth work. */
+  growth: boolean;
+}
+
+/** Membership fees shown wherever joining is offered. */
+export interface MembershipFees {
+  ordinary: string;
+  lifetime: string;
+}
+
 /** Top-level configuration for the entire site. */
 export interface SiteConfig {
   name: string;
@@ -171,4 +186,7 @@ export interface SiteConfig {
   contact: ContactInfo;
   social: SocialLink[];
   donationStatus: DonationStatus;
+  /** Single membership form URL used by the letterhead, home, and contact page. */
+  membershipFormUrl: string;
+  fees: MembershipFees;
 }

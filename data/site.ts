@@ -39,6 +39,12 @@ export const siteConfig: SiteConfig = {
     ],
   },
 
+  membershipFormUrl: "https://forms.gle/XJkS4AHdGHvAe7Ev7",
+  fees: {
+    ordinary: "₹500",
+    lifetime: "₹1,000",
+  },
+
   social: [
     {
       platform: "instagram",
