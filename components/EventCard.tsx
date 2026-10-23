@@ -18,7 +18,7 @@ export default function EventCard({ event }: EventCardProps) {
     <article className="min-w-0">
       <p className="text-sm font-medium text-brand-saffron-text">{event.dateLabel}</p>
       {event.location && <p className="mt-2 text-ink-soft">{event.location}</p>}
-      <h2 className="mt-4">
+      <h2 className="mt-4" data-enter>
         {event.titleMr && (
           <span className="font-display-mr block text-[clamp(1.75rem,4vw,2.5rem)] leading-tight text-brand-navy">
             {event.titleMr}
@@ -49,12 +49,17 @@ export default function EventCard({ event }: EventCardProps) {
         </div>
       )}
 
-      <div className="font-marathi mt-6 max-w-3xl space-y-5 text-lg leading-9 sm:text-xl sm:leading-10">
+      <div
+        data-enter="follow"
+        className="font-marathi mt-6 max-w-3xl space-y-5 text-lg leading-9 sm:text-xl sm:leading-10"
+      >
         {event.description.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
-      <p className="font-display-mr mt-6 text-xl text-brand-navy">!! सेवा हेच कर्म !!</p>
+      <p data-enter="follow" className="font-display-mr mt-6 text-xl text-brand-navy">
+        !! सेवा हेच कर्म !!
+      </p>
     </article>
   );
 }

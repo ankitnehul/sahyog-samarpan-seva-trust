@@ -36,6 +36,10 @@
   --header-offset: 5rem;
   --background: var(--color-paper);
   --foreground: var(--color-ink);
+  --band-title: var(--color-brand-navy);
+  --band-text: var(--color-ink);
+  --band-soft: var(--color-ink-soft);
+  --band-rule: var(--color-brand-gold-ink);
 }
 
 html {
@@ -61,6 +65,129 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-brand-gold-ink);
   outline-offset: 3px;
+}
+
+/*
+  Shared surfaces. Paper stays the reading ground.
+  Navy is a full band. A photograph is a ground only with the scrim.
+*/
+.surface-paper {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  --band-title: var(--color-brand-navy);
+  --band-text: var(--color-ink);
+  --band-soft: var(--color-ink-soft);
+  --band-rule: var(--color-brand-gold-ink);
+}
+
+.surface-paper-deep {
+  background-color: var(--color-paper-deep);
+  color: var(--color-ink);
+  --band-title: var(--color-brand-navy);
+  --band-text: var(--color-ink);
+  --band-soft: var(--color-ink-soft);
+  --band-rule: var(--color-brand-gold-ink);
+}
+
+.surface-ink,
+.surface-photo {
+  color: #fff;
+  --band-title: #fff;
+  --band-text: #fff;
+  --band-soft: #fff;
+  --band-rule: var(--color-brand-gold);
+}
+
+.surface-ink {
+  background-color: var(--color-brand-navy);
+}
+
+.surface-photo {
+  background-color: var(--color-brand-navy);
+  min-height: 70dvh;
+}
+
+.band-screen {
+  min-height: 70dvh;
+}
+
+@media (min-width: 768px) {
+  .surface-photo,
+  .band-screen {
+    min-height: calc(100dvh - var(--header-offset));
+  }
+}
+
+/*
+  Text sits in the lower region of a cover band.
+  The top of the veil is about 60% navy. The lower region is darker
+  so a sentence stays readable when the photograph behind it is light.
+*/
+.band-title {
+  color: var(--band-title);
+}
+
+.band-text {
+  color: var(--band-text);
+}
+
+.band-soft {
+  color: var(--band-soft);
+}
+
+.band-rule {
+  background-color: var(--band-rule);
+}
+
+.surface-scrim {
+  background: linear-gradient(
+    180deg,
+    rgb(30 42 92 / 0.62) 0%,
+    rgb(30 42 92 / 0.78) 46%,
+    rgb(30 42 92 / 0.92) 100%
+  );
+}
+
+.surface-ink :focus-visible,
+.surface-photo :focus-visible,
+.focus-gold:focus-visible {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 3px;
+}
+
+.control-whatsapp:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.control-close:focus-visible {
+  outline: 2px solid var(--color-brand-gold-ink);
+  outline-offset: 3px;
+}
+
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-ready [data-enter].is-entered {
+    animation-name: enter-rise;
+    animation-duration: 620ms;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+  }
+
+  html.motion-ready [data-enter="follow"].is-entered {
+    animation-delay: 120ms;
+  }
 }
 
 /* Text links. Hover and active change color only, for 150ms. */

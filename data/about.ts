@@ -44,7 +44,6 @@ export const aboutEn: AboutContent = {
       bullets: [
         "Managing Committee members must be at least 21 years of age and have passed Class 12 (Higher Secondary).",
         "Membership is open to any Indian citizen who agrees with the Foundation’s objectives.",
-        "One-time membership fee: ₹500 (Ordinary Member). Lifetime membership: ₹1,000.",
       ],
     },
     {
@@ -100,7 +99,6 @@ export const aboutMr: AboutContent = {
       bullets: [
         "समिती सदस्यांचे किमान वय २१ वर्ष आणि किमान शैक्षणिक पात्रता १२वी उत्तीर्ण.",
         "फाउंडेशनच्या उद्दिष्टांशी सहमत असलेल्या कोणत्याही भारतीय नागरिकाला सदस्यत्व मिळू शकते.",
-        "एकवेळ सदस्यत्व शुल्क: ₹५०० | आजीवन सदस्यत्व: ₹१,०००.",
       ],
     },
     {

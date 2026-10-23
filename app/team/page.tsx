@@ -13,19 +13,30 @@ export default function TeamPage() {
   return (
     <div>
       <PageHeading
+        surface="paper"
         titleMr="आमची टीम"
         title="Our Team"
         description="The people who keep Sahayog Samarpan Seva Foundation and its work in education, health, sports, and outreach."
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <h2>
-          <span className="font-display-mr block text-3xl text-brand-navy">व्यवस्थापन समिती</span>
-          <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
-            Managing Committee
-          </span>
-        </h2>
-        <ul className="mt-8 border-t border-rule">
+      <section className="surface-ink">
+        <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h2>
+            <span data-enter className="font-display-mr block text-3xl text-white">
+              व्यवस्थापन समिती
+            </span>
+            <span
+              data-enter="follow"
+              className="font-display-en mt-1 block text-2xl font-medium text-white"
+            >
+              Managing Committee
+            </span>
+          </h2>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <ul data-enter="follow" className="border-t border-rule">
           {managingCommittee.map((member) => (
             <li
               key={member.role ?? member.name}
@@ -50,13 +61,16 @@ export default function TeamPage() {
         </ul>
       </section>
 
-      <section className="border-t border-rule bg-paper-deep">
+      <section className="surface-paper-deep border-t border-rule">
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <h2>
-            <span className="font-display-mr block text-3xl text-brand-navy">
+            <span data-enter className="font-display-mr block text-3xl text-brand-navy">
               प्रकल्प प्रमुख व टीम
             </span>
-            <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
+            <span
+              data-enter="follow"
+              className="font-display-en mt-1 block text-2xl font-medium text-ink"
+            >
               Project heads and teams
             </span>
           </h2>
@@ -89,8 +103,12 @@ export default function TeamPage() {
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <h2>
-          <span className="font-display-mr block text-3xl text-brand-navy">सदस्य</span>
-          <span className="font-display-en mt-1 block text-2xl font-medium text-ink">Members</span>
+          <span data-enter className="font-display-mr block text-3xl text-brand-navy">
+            सदस्य
+          </span>
+          <span data-enter="follow" className="font-display-en mt-1 block text-2xl font-medium text-ink">
+            Members
+          </span>
         </h2>
         <ul className="mt-6 grid grid-cols-1 border-t border-rule sm:grid-cols-2 xl:grid-cols-3">
           {members.map((member) => (

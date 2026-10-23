@@ -98,7 +98,7 @@ export interface WorkEvent {
   location?: string;
   /** Photo path under /public, e.g. "/images/our-work/...". */
   photo: string;
-  /** CSS object-fit for the photo frame. Defaults to cover. */
+  /** CSS object-fit for the photo frame. Defaults to contain. */
   photoFit?: "cover" | "contain";
   /** CSS object-position, e.g. "center top". */
   photoPosition?: string;
@@ -166,10 +166,10 @@ export interface FocusArea {
   growth: boolean;
 }
 
-/** Membership fees shown wherever joining is offered. */
+/** The one membership fee shown wherever joining is offered. */
 export interface MembershipFees {
-  ordinary: string;
-  lifetime: string;
+  en: string;
+  mr: string;
 }
 
 /** Top-level configuration for the entire site. */

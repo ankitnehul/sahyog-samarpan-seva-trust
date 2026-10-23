@@ -41,8 +41,8 @@ export const siteConfig: SiteConfig = {
 
   membershipFormUrl: "https://forms.gle/XJkS4AHdGHvAe7Ev7",
   fees: {
-    ordinary: "₹500",
-    lifetime: "₹1,000",
+    en: "Membership fee is ₹500 per year.",
+    mr: "सदस्यत्व शुल्क वर्षाला ₹५०० आहे.",
   },
 
   social: [

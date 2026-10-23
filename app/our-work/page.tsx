@@ -13,6 +13,7 @@ export default function OurWorkPage() {
   return (
     <div>
       <PageHeading
+        surface="navy"
         titleMr="आमचे कार्य"
         title="Our Work"
         description="A record of the seva carried out by Sahayog Samarpan Seva Foundation, newest visit first."

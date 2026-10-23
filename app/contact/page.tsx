@@ -18,12 +18,13 @@ export default function ContactPage() {
   return (
     <div>
       <PageHeading
+        surface="paper"
         titleMr="संपर्क"
         title="Contact"
         description="Reach Sahayog Samarpan Seva Foundation, join the WhatsApp community, or become a member."
       />
 
-      <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
         {contact.whatsappCommunity && (
           <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
             <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
@@ -31,19 +32,24 @@ export default function ContactPage() {
             </p>
             <div>
             <h2>
-              <span className="font-display-mr block text-3xl text-brand-navy">व्हॉट्सॲप समुदाय</span>
-              <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
+              <span data-enter className="font-display-mr block text-3xl text-brand-navy">
+                व्हॉट्सॲप समुदाय
+              </span>
+              <span
+                data-enter="follow"
+                className="font-display-en mt-1 block text-2xl font-medium text-ink"
+              >
                 WhatsApp community
               </span>
             </h2>
-            <p className="mt-4 max-w-prose text-base leading-7">
+            <p data-enter="follow" className="mt-4 max-w-prose text-base leading-7">
               Join the community for news of events, seva, and announcements.
             </p>
             <a
               href={contact.whatsappCommunity}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-semibold text-ink"
+              className="control-whatsapp mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-semibold text-ink"
             >
               <FaWhatsapp className="h-5 w-5" aria-hidden="true" />
               Join WhatsApp community
@@ -51,32 +57,49 @@ export default function ContactPage() {
             </div>
           </section>
         )}
+      </div>
 
-        <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
-          <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
+      <section className="surface-ink">
+        <div className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8 sm:px-6 lg:px-8">
+          <p className="font-display-mr text-4xl leading-none text-white" aria-hidden="true">
             २
           </p>
           <div>
-          <h2>
-            <span className="font-display-mr block text-3xl text-brand-navy">सदस्यत्व</span>
-            <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
-              Membership
-            </span>
-          </h2>
-          <div className="mt-5">
-            <JoinLink />
+            <h2>
+              <span data-enter className="font-display-mr block text-3xl text-white">
+                सदस्यत्व
+              </span>
+              <span
+                data-enter="follow"
+                className="font-display-en mt-1 block text-2xl font-medium text-white"
+              >
+                Membership
+              </span>
+            </h2>
+            <p data-enter="follow" className="mt-4 max-w-prose text-base leading-7 text-white">
+              {siteConfig.fees.en}
+            </p>
+            <p data-enter="follow" className="font-marathi mt-2 max-w-prose text-base leading-8 text-white">
+              {siteConfig.fees.mr}
+            </p>
+            <div data-enter="follow" className="mt-5">
+              <JoinLink />
+            </div>
           </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
+      <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+        <section className="grid gap-4 py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
           <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
             ३
           </p>
           <div>
           <h2>
-            <span className="font-display-mr block text-3xl text-brand-navy">संपर्क माहिती</span>
-            <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
+            <span data-enter className="font-display-mr block text-3xl text-brand-navy">
+              संपर्क माहिती
+            </span>
+            <span data-enter="follow" className="font-display-en mt-1 block text-2xl font-medium text-ink">
               Phone, email, and place
             </span>
           </h2>

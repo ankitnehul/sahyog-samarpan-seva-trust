@@ -17,7 +17,7 @@ export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
     if (!dialog) return;
     if (active && !dialog.open) {
       dialog.showModal();
-      closeRef.current?.focus();
+      closeRef.current?.focus({ focusVisible: true } as FocusOptions);
     } else if (!active && dialog.open) {
       dialog.close();
     }
@@ -39,7 +39,7 @@ export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
       <div className="mx-auto w-full max-w-7xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
         {albums.map((album) => (
           <section key={album.id} id={album.id}>
-            <h2>
+            <h2 data-enter>
               <span className="font-display-mr block text-[clamp(1.75rem,4vw,2.25rem)] leading-tight text-brand-navy">
                 {album.titleMr}
               </span>
@@ -108,7 +108,7 @@ export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
                 ref={closeRef}
                 type="button"
                 onClick={() => setActive(null)}
-                className="inline-flex min-h-11 items-center text-brand-navy"
+                className="control-close inline-flex min-h-11 items-center text-brand-navy"
               >
                 Close
               </button>
