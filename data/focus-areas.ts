@@ -1,7 +1,7 @@
 import type { FocusArea } from "@/types";
 
 /**
- * The six areas of work. Home and the footer both read this list.
+ * Areas of work. Home and the footer both read this list.
  * `growth` allows the leaf green; other areas stay in ink and navy.
  */
 export const focusAreas: FocusArea[] = [
@@ -30,5 +30,11 @@ export const focusAreas: FocusArea[] = [
     label: "Youth Development",
     labelMr: "युवा विकास",
     growth: true,
+  },
+  {
+    id: "farmers",
+    label: "Farmer Welfare",
+    labelMr: "शेतकरी कल्याण",
+    growth: false,
   },
 ];

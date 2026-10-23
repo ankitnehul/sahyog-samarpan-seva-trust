@@ -81,7 +81,7 @@ export default function Navbar() {
         className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-2 sm:px-6 lg:px-8"
       >
         <Link href="/" className="flex min-w-0 flex-1 items-center gap-3">
-          <Seal className="h-12 w-11" sizes="48px" priority />
+          <Seal className="h-12 w-[3.67rem]" sizes="59px" priority />
           <span className="min-w-0 leading-tight">
             <span className="font-display-mr block text-base text-brand-navy sm:text-lg">
               {siteConfig.nameMr}

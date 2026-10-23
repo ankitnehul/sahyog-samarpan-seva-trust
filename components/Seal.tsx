@@ -12,7 +12,7 @@ interface SealProps {
 /** The foundation seal, contained in a sized frame so it is never stretched or cropped. */
 export default function Seal({ className, alt = "", priority = false, sizes }: SealProps) {
   return (
-    <span className={`relative inline-block shrink-0 bg-paper ${className}`}>
+    <span className={`relative inline-block shrink-0 ${className}`}>
       <Image
         src={siteConfig.logo}
         alt={alt}

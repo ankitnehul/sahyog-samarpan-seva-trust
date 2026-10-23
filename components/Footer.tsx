@@ -32,7 +32,7 @@ export default function Footer() {
     <footer className="bg-brand-navy text-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex items-start gap-4">
-          <Seal className="h-14 w-[3.2rem]" sizes="64px" />
+          <Seal className="h-14 w-[4.27rem]" sizes="68px" />
           <div className="min-w-0">
             <p className="font-display-mr text-[clamp(2rem,5vw,3.25rem)] leading-tight text-brand-gold">
               {siteConfig.taglineMr}

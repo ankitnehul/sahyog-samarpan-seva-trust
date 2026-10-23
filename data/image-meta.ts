@@ -1,6 +1,6 @@
 /** Intrinsic pixel sizes for public images, so next/image can reserve space. */
 export const imageMeta: Record<string, { width: number; height: number }> = {
-  "/logo/logo.png": { width: 931, height: 1024 },
+  "/logo/foundation-seal.png": { width: 1884, height: 1543 },
   "/images/events/chitrakala-spardha-2026.png": { width: 682, height: 1024 },
   "/images/gallery/art-materials-presentation.png": { width: 1024, height: 576 },
   "/images/gallery/art-workshop-prize-presentation.png": { width: 1024, height: 576 },

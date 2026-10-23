@@ -52,9 +52,9 @@ export const metadata: Metadata = {
     "donation",
   ],
   icons: {
-    icon: [{ url: "/logo/logo.png", type: "image/png" }],
-    apple: [{ url: "/logo/logo.png", type: "image/png" }],
-    shortcut: "/logo/logo.png",
+    icon: [{ url: siteConfig.logo, type: "image/png" }],
+    apple: [{ url: siteConfig.logo, type: "image/png" }],
+    shortcut: siteConfig.logo,
   },
 };
 

@@ -15,7 +15,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Sahayog Samarpan Seva Foundation is a non-profit organization dedicated to social welfare and humanitarian service — working in education, healthcare, sanitation, environment, women empowerment, child welfare and youth development for the needy and underprivileged.",
 
-  logo: "/logo/logo.png",
+  logo: "/logo/foundation-seal.png",
 
   nav: [
     { label: "Home", labelMr: "मुख्यपृष्ठ", href: "/" },

@@ -25,8 +25,8 @@ export default function Home() {
       <section className="bg-brand-navy text-white">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <Seal
-            className="h-24 w-[5.5rem]"
-            sizes="96px"
+            className="h-24 w-[7.33rem]"
+            sizes="117px"
             priority
             alt={`${siteConfig.name} seal`}
           />
@@ -278,13 +278,11 @@ export default function Home() {
           <h2>
             <span className="font-display-mr block text-3xl text-brand-navy">सदस्य व्हा</span>
             <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
-              Join the sanstha
+              Join the foundation
             </span>
           </h2>
           <p className="max-w-3xl text-base leading-7">
             Membership is open to any Indian citizen who agrees with the foundation’s objectives.
-            Ordinary membership is {siteConfig.fees.ordinary}. Lifetime membership is{" "}
-            {siteConfig.fees.lifetime}.
           </p>
           <div>
             <JoinLink />

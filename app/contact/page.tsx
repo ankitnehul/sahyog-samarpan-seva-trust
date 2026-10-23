@@ -63,10 +63,6 @@ export default function ContactPage() {
               Membership
             </span>
           </h2>
-          <p className="mt-4 max-w-prose text-base leading-7">
-            Ordinary membership is {siteConfig.fees.ordinary}. Lifetime membership is{" "}
-            {siteConfig.fees.lifetime}.
-          </p>
           <div className="mt-5">
             <JoinLink />
           </div>
