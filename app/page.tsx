@@ -20,7 +20,6 @@ function visitFrame(src: string) {
 
 export default function Home() {
   const latest = workEvents[0];
-  const upcoming = upcomingEvents[0];
   const ourWork = siteConfig.nav.find((item) => item.href === "/our-work");
   const gallery = siteConfig.nav.find((item) => item.href === "/gallery");
   const established = toDevanagariDigits(siteConfig.establishedYear);
@@ -223,10 +222,11 @@ export default function Home() {
         </div>
       </section>
 
-      {upcoming && (
+      {upcomingEvents.length > 0 && (
         <section className="surface-paper">
-          <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <article className="max-w-3xl">
+          <div className="mx-auto w-full max-w-7xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
+            {upcomingEvents.map((upcoming) => (
+            <article key={upcoming.id} className="max-w-3xl">
               {upcoming.dateLabel && (
                 <p data-enter className="text-sm font-medium text-brand-saffron-text">
                   {upcoming.dateLabel}
@@ -268,6 +268,7 @@ export default function Home() {
                 </p>
               )}
             </article>
+            ))}
           </div>
         </section>
       )}
