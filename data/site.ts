@@ -65,5 +65,9 @@ export const siteConfig: SiteConfig = {
     },
   ],
 
-  donationStatus: "coming-soon",
+  donationStatus: "active",
+  donation: {
+    upiId: "9130722796.1@hdfc",
+    qrImage: "/images/donate/upi-qr.jpg",
+  },
 };

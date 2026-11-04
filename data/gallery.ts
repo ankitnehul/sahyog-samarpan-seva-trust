@@ -6,6 +6,29 @@ import type { GalleryAlbum } from "@/types";
  */
 export const galleryAlbums: GalleryAlbum[] = [
   {
+    id: "diwali-balghar-2026",
+    title: "Diwali Celebration 2026 at Balghar Prakalp",
+    titleMr: "बालघर प्रकल्पातील अनाथ मुलांबरोबर आनंदमयी दिवाळी!",
+    images: [
+      {
+        id: "diwali-balghar-children-making",
+        src: "/images/gallery/diwali-balghar-children-making.jpg",
+        alt: "Children of Balghar Prakalp making paper lanterns for Diwali",
+        caption: "Children making lanterns at Balghar Prakalp",
+        captionMr: "बालघर प्रकल्पातील मुले आकाशकंदील तयार करताना",
+        fit: "contain",
+      },
+      {
+        id: "diwali-balghar-lanterns",
+        src: "/images/gallery/diwali-balghar-lanterns.jpg",
+        alt: "Colourful paper lanterns handmade by the children",
+        caption: "Handmade lanterns crafted by the children",
+        captionMr: "मुलांनी स्वतःच्या हातांनी तयार केलेले आकाशकंदील",
+        fit: "contain",
+      },
+    ],
+  },
+  {
     id: "dussehra-balghar-2026",
     title: "Dussehra at Balghar Prakalp",
     titleMr: "दसऱ्याच्या रंगात उमलला बालघराचा आनंद",

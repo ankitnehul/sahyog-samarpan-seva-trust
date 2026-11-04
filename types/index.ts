@@ -58,6 +58,13 @@ export interface AboutContent {
 /** Donation availability state. */
 export type DonationStatus = "coming-soon" | "active";
 
+/** UPI details shown in the Donate dialog once donations are active. */
+export interface DonationInfo {
+  upiId: string;
+  /** QR image path under /public. */
+  qrImage: string;
+}
+
 /** A single team member / office bearer. */
 export interface TeamMember {
   name: string;
@@ -186,6 +193,7 @@ export interface SiteConfig {
   contact: ContactInfo;
   social: SocialLink[];
   donationStatus: DonationStatus;
+  donation: DonationInfo;
   /** Single membership form URL used by the letterhead, home, and contact page. */
   membershipFormUrl: string;
   fees: MembershipFees;

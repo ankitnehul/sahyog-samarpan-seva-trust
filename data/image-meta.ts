@@ -1,7 +1,11 @@
 /** Intrinsic pixel sizes for public images, so next/image can reserve space. */
 export const imageMeta: Record<string, { width: number; height: number }> = {
   "/logo/foundation-seal.png": { width: 1884, height: 1543 },
+  "/images/donate/upi-qr.jpg": { width: 804, height: 858 },
   "/images/events/chitrakala-spardha-2026.png": { width: 682, height: 1024 },
+  "/images/gallery/diwali-balghar-children-making.jpg": { width: 960, height: 1200 },
+  "/images/gallery/diwali-balghar-lanterns.jpg": { width: 1280, height: 1280 },
+  "/images/our-work/diwali-balghar-2026.jpg": { width: 1600, height: 937 },
   "/images/gallery/art-materials-presentation.png": { width: 1024, height: 576 },
   "/images/gallery/art-workshop-prize-presentation.png": { width: 1024, height: 576 },
   "/images/gallery/art-workshop-students.png": { width: 1024, height: 576 },
