@@ -79,7 +79,7 @@ export default function DonateButton({ fullWidth = false }: DonateButtonProps) {
                 ref={closeRef}
                 type="button"
                 onClick={() => setOpen(false)}
-                className="control-close inline-flex min-h-11 items-center text-brand-navy"
+                className="control-close inline-flex min-h-11 min-w-11 items-center justify-center text-brand-navy"
               >
                 Close
               </button>

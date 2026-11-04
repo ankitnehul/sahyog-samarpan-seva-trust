@@ -21,7 +21,6 @@ export const siteConfig: SiteConfig = {
     { label: "Home", labelMr: "मुख्यपृष्ठ", href: "/" },
     { label: "About Us", labelMr: "आमच्याबद्दल", href: "/about" },
     { label: "Our Work", labelMr: "आमचे कार्य", href: "/our-work" },
-    { label: "Our Team", labelMr: "आमची टीम", href: "/team" },
     { label: "Gallery", labelMr: "गॅलरी", href: "/gallery" },
     { label: "Contact", labelMr: "संपर्क", href: "/contact" },
   ],

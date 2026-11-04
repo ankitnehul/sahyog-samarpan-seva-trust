@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // Team is now a section of About.
+      { source: "/team", destination: "/about#team", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;

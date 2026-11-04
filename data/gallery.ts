@@ -1,129 +1,8 @@
+import { workEvents } from "@/data/events";
 import type { GalleryAlbum } from "@/types";
 
-/**
- * Gallery albums, newest event first.
- * Each album is one event section on the Gallery page.
- */
-export const galleryAlbums: GalleryAlbum[] = [
-  {
-    id: "diwali-balghar-2026",
-    title: "Diwali Celebration 2026 at Balghar Prakalp",
-    titleMr: "बालघर प्रकल्पातील अनाथ मुलांबरोबर आनंदमयी दिवाळी!",
-    images: [
-      {
-        id: "diwali-balghar-children-making",
-        src: "/images/gallery/diwali-balghar-children-making.jpg",
-        alt: "Children of Balghar Prakalp making paper lanterns for Diwali",
-        caption: "Children making lanterns at Balghar Prakalp",
-        captionMr: "बालघर प्रकल्पातील मुले आकाशकंदील तयार करताना",
-        fit: "contain",
-      },
-      {
-        id: "diwali-balghar-lanterns",
-        src: "/images/gallery/diwali-balghar-lanterns.jpg",
-        alt: "Colourful paper lanterns handmade by the children",
-        caption: "Handmade lanterns crafted by the children",
-        captionMr: "मुलांनी स्वतःच्या हातांनी तयार केलेले आकाशकंदील",
-        fit: "contain",
-      },
-    ],
-  },
-  {
-    id: "dussehra-balghar-2026",
-    title: "Dussehra at Balghar Prakalp",
-    titleMr: "दसऱ्याच्या रंगात उमलला बालघराचा आनंद",
-    images: [
-      {
-        id: "dussehra-balghar-group",
-        src: "/images/our-work/dussehra-balghar-2026.jpg",
-        alt: "Children and volunteers of Balghar Prakalp together for Dussehra",
-        caption: "Dussehra with the children of Balghar Prakalp",
-        captionMr: "बालघर प्रकल्पातील विद्यार्थ्यांसोबत दसरा",
-        fit: "contain",
-      },
-    ],
-  },
-  {
-    id: "ganpati-workshop-balghar-2026",
-    title: "Thirty-one Ganpatis, symbols of the children's joy",
-    titleMr: "३१ बाप्पा — छोट्या कलाकारांच्या आनंदाचे प्रतीक",
-    images: [
-      {
-        id: "ganpati-workshop-idol",
-        src: "/images/gallery/ganpati-workshop-idol.jpg",
-        alt: "Shadu-clay Ganpati idol made during the Balghar Prakalp workshop",
-        caption: "A shadu-clay Ganpati shaped by a young participant",
-        captionMr: "सहभागी मुलाने साकारलेली शाडू मातीची गणपती मूर्ती",
-        fit: "contain",
-      },
-      {
-        id: "ganpati-workshop-children",
-        src: "/images/gallery/ganpati-workshop-children.jpg",
-        alt: "Children of Balghar Prakalp with the Ganpati idols they made",
-        caption: "Children of Balghar Prakalp with their Ganpati idols",
-        captionMr: "बालघर प्रकल्पातील मुले त्यांच्या गणपती मूर्तींसोबत",
-        fit: "contain",
-      },
-      {
-        id: "ganpati-workshop-guidance",
-        src: "/images/gallery/ganpati-workshop-guidance.jpg",
-        alt: "Committee members guiding children as they make Ganpati idols",
-        caption: "Committee members guiding the children",
-        captionMr: "समिती सदस्य मुलांना मार्गदर्शन करताना",
-        fit: "contain",
-      },
-      {
-        id: "ganpati-workshop-idols",
-        src: "/images/gallery/ganpati-workshop-idols.jpg",
-        alt: "Thirty-one shadu-clay Ganpati idols made at the workshop",
-        caption: "Thirty-one Ganpati idols from the workshop",
-        captionMr: "कार्यशाळेत साकारलेले ३१ बाप्पा",
-        fit: "contain",
-      },
-    ],
-  },
-  {
-    id: "art-workshop-mukbadhir-2026",
-    title: "Art Workshop at Mukbadhir Vidyalaya",
-    titleMr: "चित्रकला कार्यशाळा — मूकबधिर विद्यालय",
-    images: [
-      {
-        id: "art-workshop-prize-presentation",
-        src: "/images/gallery/art-workshop-prize-presentation.png",
-        alt: "Prize presentation during the art workshop at Mukbadhir Vidyalaya",
-        caption: "Encouraging young artists at the art workshop",
-        captionMr: "चित्रकला उपक्रमातील बालकलाकारांना प्रोत्साहन",
-      },
-      {
-        id: "art-workshop-students",
-        src: "/images/gallery/art-workshop-students.png",
-        alt: "Students creating artwork during the painting competition",
-        caption: "Students expressing their creativity through art",
-        captionMr: "कलेतून सर्जनशीलता व्यक्त करताना विद्यार्थी",
-      },
-      {
-        id: "art-workshop-team",
-        src: "/images/gallery/art-workshop-team.png",
-        alt: "Sahayog Samarpan team and teachers at Mukbadhir Vidyalaya",
-        caption: "Sahayog Samarpan members with the school team",
-        captionMr: "विद्यालयाच्या शिक्षकांसोबत सहयोग समर्पण परिवार",
-      },
-      {
-        id: "art-materials-presentation",
-        src: "/images/gallery/art-materials-presentation.png",
-        alt: "Presentation of art materials at Mukbadhir Vidyalaya",
-        caption: "Art materials arranged for the young participants",
-        captionMr: "बालसहभागींसाठी चित्रकला साहित्य",
-      },
-      {
-        id: "mukbadhir-vidyalaya",
-        src: "/images/gallery/mukbadhir-vidyalaya.png",
-        alt: "Group photo at Mukbadhir Vidyalaya, Savedi, Ahilyanagar",
-        caption: "Visit to Mukbadhir Vidyalaya, Savedi, Ahilyanagar",
-        captionMr: "मूकबधिर विद्यालय, सावेडी, अहिल्यानगर येथील भेट",
-      },
-    ],
-  },
+/** Albums that have no event page of their own. */
+const standaloneAlbums: GalleryAlbum[] = [
   {
     id: "community-distribution",
     title: "Community Distribution",
@@ -152,4 +31,20 @@ export const galleryAlbums: GalleryAlbum[] = [
       },
     ],
   },
+];
+
+/**
+ * Gallery albums: every event that has photographs (newest first),
+ * then the standalone albums. Each album is one section on the Gallery page.
+ */
+export const galleryAlbums: GalleryAlbum[] = [
+  ...workEvents
+    .filter((event) => event.photos && event.photos.length > 0)
+    .map((event) => ({
+      id: event.id,
+      title: event.album?.title ?? event.title,
+      titleMr: event.album?.titleMr ?? event.titleMr ?? "",
+      images: event.photos ?? [],
+    })),
+  ...standaloneAlbums,
 ];

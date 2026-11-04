@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AboutSections } from "@/components/AboutSections";
 import PageHeading from "@/components/PageHeading";
+import TeamSections from "@/components/TeamSections";
 import { aboutEn, aboutMr } from "@/data/about";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Sahayog Samarpan Seva Foundation — our mission, objectives, journey and commitment to social welfare in Ahilyanagar, Maharashtra.",
+    "Learn about Sahayog Samarpan Seva Foundation — our mission, objectives, journey, team and commitment to social welfare in Ahilyanagar, Maharashtra.",
 };
 
 export default function AboutPage() {
@@ -42,6 +43,8 @@ export default function AboutPage() {
           </Link>
         </p>
       </div>
+
+      <TeamSections />
     </div>
   );
 }

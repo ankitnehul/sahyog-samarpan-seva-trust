@@ -10,13 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function GalleryPage() {
-  const firstImage = galleryAlbums[0]?.images[0];
-
   return (
     <div>
       <PageHeading
-        surface={firstImage ? "photo" : "paper"}
-        photoSrc={firstImage?.src}
+        surface="navy"
         titleMr="गॅलरी"
         title="Gallery"
         description="Moments from our seva, community visits, and events. Each photograph is shown in full."

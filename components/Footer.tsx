@@ -89,7 +89,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="mt-1 h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
-                <a href={`mailto:${contact.email}`} className="min-w-0 break-all">
+                <a href={`mailto:${contact.email}`} className="inline-flex min-h-11 min-w-0 items-center break-all">
                   {contact.email}
                 </a>
               </li>
