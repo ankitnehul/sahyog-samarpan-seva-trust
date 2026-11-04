@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Type | feat (information architecture, visual theme, motion) |
-| Status | Open. Not started. |
+| Status | Implemented on this branch. Awaiting preview review on real phones and the Lighthouse run. Not merged. |
 | Repository | `sahyog-seva-foundation` (Next.js 16, React 19, Tailwind v4) |
 | Work branch | `sahayog_samarpan_storyflow_redesign` |
 | Branched from | `main` at `58b138c` (`feat(content): add Ustod Kamgar upcoming event and list all upcoming events`) |
@@ -63,7 +63,7 @@ When this ticket disagrees with an earlier ticket, this table wins. When two row
 - Fonts (Tiro Devanagari Marathi, Mukta, Newsreader, Source Sans 3) and the colour tokens, including the accessible text colours. Body text 4.5:1 or better; large type on dark 3:1 or better. No white text on saffron, gold or WhatsApp green.
 - The seal asset and its frames; favicon and Apple icon read `siteConfig.logo`.
 - Skip link, `id="content"`, sticky header, `--header-offset` and anchor offsets, `aria-current` on the active link, the mobile menu behaviour (closes on navigation, on `Escape`, and when crossing the desktop breakpoint; body scroll lock; menu panel scrolls inside `max-h-[calc(100dvh-4.5rem)]`).
-- Donate stays visible, `aria-disabled`, labelled coming soon. Join opens `siteConfig.membershipFormUrl`.
+- Donate behaves as `siteConfig.donationStatus` says: today it is `active` and opens the UPI dialog; if set back to `coming-soon` it is visible, `aria-disabled`, and labelled. Join opens `siteConfig.membershipFormUrl`.
 - `ContentImage` reserves space from `data/image-meta.ts`, defaults to `contain`, and shows "Photograph unavailable" on failure.
 - Gallery dialog behaviour: Close, `Escape`, focus returns to the opener, captions in both scripts.
 - Marathi leads, English follows. Devanagari is never letter-spaced or uppercased. `overflow-wrap: break-word` stays on `body`.
@@ -127,10 +127,10 @@ These are hard rules. The acceptance checklist tests each one.
 | `/our-work` | `/our-work` | Event index |
 | — | `/our-work/[id]` | New: one page per event, statically generated from the event model |
 | `/about`, `/team` | `/about` | Team becomes a section of About. `/team` redirects to `/about#team` |
-| `/gallery` | folded into events | Photos live on each event page. `/gallery` stays as one "all photographs" view, or redirects to `/our-work`. Decide in Phase 0 |
+| `/gallery` | `/gallery` (kept) | **Decided: the route stays.** Its albums are now derived from the events, so each event's photos appear on its own page and on `/gallery` |
 | `/contact` | `/contact` | Contact, Join and Donate on one page |
 
-Navigation shrinks to four items: Home, About, Our Work, Contact. Redirects go in `next.config.ts`; no old URL may 404. Existing `/our-work#<id>` anchors (shared on WhatsApp) must still land on the right event — either keep the anchors on the index, or redirect each hash on the client to `/our-work/<id>`.
+Navigation shrinks from six items to five: Home, About, Our Work, Gallery, Contact (Team moved into About; Gallery stays because the route is kept). Redirects go in `next.config.ts`; no old URL may 404. Existing `/our-work#<id>` anchors (shared on WhatsApp) must still land on the right event — either keep the anchors on the index, or redirect each hash on the client to `/our-work/<id>`.
 
 ### Event model
 
@@ -227,46 +227,46 @@ Budget: no more than **three** elements animating at the same time on mobile, an
 ## Phases and acceptance
 
 ### Phase 0 — Decisions (before code)
-- [ ] Confirm the final route list and the fate of `/gallery` (keep as "all photographs" or fold into Our Work).
-- [ ] Choose the hero **mobile** and **desktop** sources, and the Join band source (desktop only), from existing files. Screenshot each at 360 × 780 and 1280 × 800 and confirm no face is cut.
-- [ ] Confirm which counters are shown, how each is computed from data, and which digit style they use.
-- [ ] Measure the nav breakpoint where four bilingual items, Join and Donate fit on one line.
+- [x] Final route list confirmed. `/gallery` stays as its own route.
+- [x] Hero source: `public/images/hero/balghar-ganpati-hero.jpg` (768 × 1024, from the Ganpati idols photograph, no children's faces), with its own crop point for phone and desktop. No photograph on the Join band; it stays a plain `paper-deep` band. Checked at 390 and 1280.
+- [x] Counters: events held (`workEvents.length`), years of seva (current year minus `establishedYear`), photographs (distinct image files across events and gallery). Devanagari digits, matching the Marathi-first headings.
+- [x] Nav breakpoint kept at `xl` (1280 px). Five English labels plus Join and Donate fit on one line there; below it the existing mobile menu is used.
 
 ### Phase 1 — Event model and data
-- [ ] New `Event` type and a single `data/events.ts`; `ongoing.ts`, `upcoming.ts` removed; gallery albums derived.
-- [ ] Every existing event, caption and description appears unchanged on the old pages (diff the rendered text before and after).
-- [ ] `npm run build` and `npm run lint` pass.
+- [x] New `SiteEvent` type and a single `data/events.ts`; `ongoing.ts`, `upcoming.ts` removed; gallery albums derived (two standalone albums, Community Distribution and Kite Activity, stay in `data/gallery.ts`).
+- [x] Every existing event, caption and description is unchanged: all 117 long strings from the old `events.ts`, `gallery.ts` and `upcoming.ts` were found byte-for-byte in the new data files. (Ongoing-event extras `intro`, `appeal`, `tagline`, `flyer` and `timeLabel` are not carried: `ongoingEvent` was `null`. An ongoing event now shows as the Home story using its normal fields.)
+- [x] `npm run build` and `npm run lint` pass (8 event pages generated).
 
 ### Phase 2 — Primitives
-- [ ] `Section`, `Reveal`, `Heading`, background image (with mobile source), `Counter` built and each used by at least one page.
-- [ ] Reduced-motion verified: no animation runs.
-- [ ] JavaScript-off verified: all text and images visible.
+- [x] `Section`, `Reveal`, `Heading`, `BgImage` (with mobile source), `Counter` built and used.
+- [x] Reduced-motion verified in Chrome: 0 elements animate on Home.
+- [ ] JavaScript-off verified: all text and images visible. (Entrance classes are added only in the browser, so this should hold; not yet tested.)
 
 ### Phase 3 — Pages
-- [ ] Home matches the five-section table, including the mobile column.
-- [ ] `/our-work` index and `/our-work/[id]` pages generated for every event.
-- [ ] About includes Team; Contact includes Join and Donate.
-- [ ] Redirects for `/team` and any retired URL; old `/our-work#<id>` links land on the right event; no 404 on an old link.
-- [ ] Navigation reduced to four items on desktop and mobile.
-- [ ] Every page passes the Simplicity rules.
+- [x] Home matches the five-section table, including the mobile column.
+- [x] `/our-work` index and `/our-work/[id]` pages generated for every event.
+- [x] About includes Team (`/about#team`); Contact includes Join and Donate.
+- [x] `/team` redirects to `/about#team` (temporary 307 until the branch is merged, then make it permanent); old `/our-work#<id>` links land on the right event (tested); no old URL 404s.
+- [x] Navigation reduced to five items (Team removed; Gallery kept by decision).
+- [x] Every page passes the Simplicity rules (reviewed by eye on Home, Our Work, an event page, About, Contact).
 
 ### Phase 4 — Imagery and performance
-- [ ] Large PNG photographs converted; no image over 300 KB; mobile hero under 150 KB; `image-meta.ts` updated.
-- [ ] Network panel shows a phone loads only the mobile hero source.
+- [x] `diwali-2024-matoshri.png` (1.4 MB) converted to a 125 KB JPEG; hero source is 102 KB; no photograph is over 300 KB; `image-meta.ts` updated.
+- [x] A phone loads one hero file at 640 px wide; a desktop loads one at 1920 px. (Both use the same source file, so there is one file to maintain; separate files are only needed if a dedicated portrait photograph is supplied.)
 - [ ] Performance budget met on Home and one event page.
 
 ### Phase 5 — Mobile QA (blocking)
-- [ ] Chrome DevTools at **320, 360, 390, 414, 768, 1024, 1280** px wide, plus landscape **667 × 375**: no horizontal scroll, no overlapping text, no clipped buttons, no text over an unscrimmed photo.
+- [x] Chrome at **320, 360, 390, 414, 768, 1024, 1280** px, plus landscape **667 × 375**, on Home, Our Work, an event page, About and Contact (plus Gallery at the first five widths): no horizontal scroll anywhere. Screenshots reviewed at 390 and 1280: no overlap, no clipped buttons, all text on photographs sits under the scrim.
 - [ ] Real devices: one iPhone (Safari) and one mid-range Android (Chrome). Check the hero does not jump when the address bar hides, the menu opens and locks scroll, the dialog closes, and motion is smooth.
 - [ ] Longest Marathi title fits within three lines at 320 px.
-- [ ] Every tap target at least 44 × 44 px (Lighthouse "tap targets" and a manual pass).
+- [x] Tap targets measured in Chrome at 414, 1024 and landscape. Two were below 44 px (the footer email link and the Close button in the photo viewer) and were fixed. Lighthouse not yet run.
 - [ ] Browser zoom at 200 %: content reflows without horizontal scroll.
-- [ ] Reduced motion turned on in the OS: no movement anywhere.
+- [x] Reduced motion emulated: no movement on Home.
 - [ ] Contrast checked wherever text sits on a photograph, on both mobile and desktop sources.
-- [ ] Keyboard path works on desktop: skip link, menu, dialog, event navigation.
+- [x] Menu opens, locks scroll, and closes on Escape (tested). Photo viewer on a phone is full screen, locks scroll, and closes on Escape (tested). Full keyboard walk-through still to do by hand.
 
 ### Phase 6 — Cleanup and sign-off
-- [ ] Dead components and data files removed (`CoverBand`, retired data files, unused `AboutSections` parts), unless still used. `ComingSoon` stays if any route still uses it.
+- [x] Removed `CoverBand`, `lib/cover-band.ts`, `app/team`, `data/ongoing.ts`, `data/upcoming.ts`. `ComingSoon` and `AboutSections` stay (the latter is still used by About).
 - [ ] Vercel preview reviewed on a phone and approved by the owner before any merge.
 
 ## Risks
@@ -284,9 +284,17 @@ Budget: no more than **three** elements animating at the same time on mobile, an
 | Motion overload or jank on low-end phones | Motion catalogue is the full list; transform/opacity only; three-at-once budget |
 | Next.js 16 differs from older versions | Read the relevant guide in `node_modules/next/dist/docs/` before using routing, redirects or image APIs (see `AGENTS.md`) |
 
+## Not done from the motion catalogue
+
+- **Page cross-fade between routes.** Skipped: the View Transitions route needs an experimental Next.js flag, and the catalogue says to skip it if it risks stutter. Add later if wanted.
+- **Image mask/clip reveal.** Replaced by a fade plus a slight settle from 1.04× (transform and opacity only, on every screen size).
+
+## Resolved questions
+
+1. `/gallery` stays as its own route (owner decision).
+2. Counters are events held, years of seva and photographs, in Devanagari digits. Children reached stays excluded.
+
 ## Open questions
 
-1. Keep `/gallery` as a standalone "all photographs" page, or fold it into Our Work?
-2. Which counters are acceptable (events held, years active, photographs), and in Devanagari or Latin digits? Children reached is excluded unless the owner supplies an approved figure.
 3. Can the foundation supply one or two new portrait photographs (at least 1080 × 1920) for the mobile hero? Existing portrait files work, but a dedicated one would look sharper.
 4. Should old theme branches (`chatgpt1`, `muskan`, `sanstha`, `first_template`) be archived once this branch is approved? No branch is deleted as part of this ticket.
