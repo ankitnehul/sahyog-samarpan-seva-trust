@@ -89,62 +89,6 @@ export interface TeamGroup {
   members: TeamMember[];
 }
 
-/** A single event / activity shown on the "Our Work" page. */
-export interface WorkEvent {
-  /** Stable id used as a React key and anchor. */
-  id: string;
-  /** English heading, e.g. "Maharashtra Day Initiative". */
-  title: string;
-  /** Optional Marathi heading. */
-  titleMr?: string;
-  /** ISO date (YYYY-MM-DD) used for sorting newest-first. */
-  date: string;
-  /** Human-friendly date label, e.g. "1 May 2026". */
-  dateLabel: string;
-  /** Optional place where the activity happened. */
-  location?: string;
-  /** Photo path under /public, e.g. "/images/our-work/...". */
-  photo: string;
-  /** CSS object-fit for the photo frame. Defaults to contain. */
-  photoFit?: "cover" | "contain";
-  /** CSS object-position, e.g. "center top". */
-  photoPosition?: string;
-  /** Optional second event photo displayed below the main photo. */
-  secondaryPhoto?: string;
-  /** Body paragraphs (Marathi), rendered in order. */
-  description: string[];
-}
-
-/** An upcoming (planned) event shown on the homepage. */
-export interface UpcomingEvent {
-  id: string;
-  title: string;
-  titleMr?: string;
-  /** Optional place where it will be held. */
-  location?: string;
-  /** Optional date label, e.g. "Coming soon" or "15 July 2026". */
-  dateLabel?: string;
-  description: string;
-  descriptionMr?: string;
-}
-
-/** A currently active / featured event on the homepage. */
-export interface OngoingEvent {
-  id: string;
-  title: string;
-  titleMr: string;
-  /** Short intro lines (Marathi), shown above the details. */
-  intro: string[];
-  dateLabel: string;
-  timeLabel: string;
-  location: string;
-  /** Closing appeal / invitation lines (Marathi). */
-  appeal: string[];
-  tagline: string;
-  /** Optional flyer / poster image under /public. */
-  flyer?: string;
-}
-
 /** A single gallery image. */
 export interface GalleryImage {
   id: string;
@@ -154,6 +98,55 @@ export interface GalleryImage {
   captionMr?: string;
   /** CSS object-fit. Use contain for portrait photos so the full frame stays visible. */
   fit?: "cover" | "contain";
+}
+
+/** Where an event is in its life. Only "done" and "ongoing" events have their own page. */
+export type EventStatus = "done" | "ongoing" | "upcoming";
+
+/** A background-safe photograph for an event's header band. Cropped with cover, behind a scrim. */
+export interface EventHero {
+  /** Wide / desktop source under /public. */
+  src: string;
+  /** CSS object-position for the wide source. */
+  position?: string;
+  /** Portrait or square source for narrow screens. Falls back to `src`. */
+  mobileSrc?: string;
+  mobilePosition?: string;
+}
+
+/**
+ * One event. Home, Our Work, each event page, and the Gallery are all views of this.
+ */
+export interface SiteEvent {
+  /** Stable id used as a React key, an anchor, and the /our-work/[id] URL. */
+  id: string;
+  status: EventStatus;
+  /** English heading, e.g. "Maharashtra Day Initiative". */
+  title: string;
+  /** Optional Marathi heading. */
+  titleMr?: string;
+  /** ISO date (YYYY-MM-DD). Used for sorting newest-first. Not needed while upcoming. */
+  date?: string;
+  /** Human-friendly date label, e.g. "1 May 2026" or "Coming soon". */
+  dateLabel?: string;
+  /** Optional place where the activity happened. */
+  location?: string;
+  /** Subject photograph under /public. Always shown whole (contain). */
+  photo?: string;
+  /** CSS object-position, used when the photo is cropped to a thumbnail. */
+  photoPosition?: string;
+  /** Optional background photograph for the event's header band. */
+  hero?: EventHero;
+  /** Gallery photographs of this event. Also feed the Gallery page. */
+  photos?: GalleryImage[];
+  /** Gallery heading, when it differs from the event heading. */
+  album?: { title: string; titleMr: string };
+  /** Short English line (upcoming events). */
+  summary?: string;
+  /** Short Marathi line (upcoming events). */
+  summaryMr?: string;
+  /** Body paragraphs (Marathi), rendered in order. */
+  description: string[];
 }
 
 /** Photos from one event, shown as its own gallery section. */

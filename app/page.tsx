@@ -1,39 +1,59 @@
 import Link from "next/link";
 import ContentImage from "@/components/ContentImage";
-import CoverBand from "@/components/CoverBand";
+import Counter from "@/components/Counter";
+import DonateButton from "@/components/DonateButton";
+import FocusAreas from "@/components/FocusAreas";
+import Heading from "@/components/Heading";
 import JoinLink from "@/components/JoinLink";
+import Reveal from "@/components/Reveal";
+import Section from "@/components/Section";
 import Seal from "@/components/Seal";
-import { focusAreas } from "@/data/focus-areas";
-import { workEvents } from "@/data/events";
-import { ongoingEvent } from "@/data/ongoing";
+import { ongoingEvent, upcomingEvents, workEvents } from "@/data/events";
+import { galleryAlbums } from "@/data/gallery";
 import { siteConfig } from "@/data/site";
-import { upcomingEvents } from "@/data/upcoming";
 import { imageFrame } from "@/lib/image-frame";
 import { toDevanagariDigits } from "@/lib/numerals";
 
-function visitFrame(src: string) {
-  const frame = imageFrame(src);
-  if (frame === "portrait") return "max-w-sm border border-rule bg-paper-deep";
-  if (frame === "wide") return "border border-rule bg-paper-deep";
-  return "max-w-3xl border border-rule bg-paper-deep";
+function photoFrame(src: string) {
+  if (imageFrame(src) === "portrait") return "mx-auto max-w-sm border border-rule bg-paper-deep";
+  return "border border-rule bg-paper-deep";
 }
 
 export default function Home() {
-  const latest = workEvents[0];
+  const latest = ongoingEvent ?? workEvents[0];
   const ourWork = siteConfig.nav.find((item) => item.href === "/our-work");
-  const gallery = siteConfig.nav.find((item) => item.href === "/gallery");
   const established = toDevanagariDigits(siteConfig.establishedYear);
+
+  // Numbers that come from the data itself. Nothing here is typed in by hand.
+  const eventsHeld = workEvents.length;
+  const yearsActive = new Date().getFullYear() - siteConfig.establishedYear;
+  const photographs = new Set(
+    [
+      ...workEvents.map((event) => event.photo),
+      ...galleryAlbums.flatMap((album) => album.images.map((image) => image.src)),
+    ].filter(Boolean),
+  ).size;
+
+  const counters = [
+    { value: eventsHeld, labelMr: "उपक्रम", label: "Events held" },
+    { value: yearsActive, labelMr: "वर्षांची सेवा", label: "Years of seva" },
+    { value: photographs, labelMr: "छायाचित्रे", label: "Photographs" },
+  ];
 
   return (
     <>
-      <CoverBand
-        src={latest?.photo}
-        position={latest?.photoPosition}
-        priority
-        fallback="navy"
+      <Section
+        tone="photo"
         screen
+        bg={{
+          src: "/images/hero/balghar-ganpati-hero.jpg",
+          position: "center 95%",
+          mobilePosition: "center 72%",
+          priority: true,
+          zoom: true,
+        }}
       >
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div className="flex flex-col gap-4">
           <Seal
             className="h-24 w-[7.33rem]"
             sizes="117px"
@@ -41,265 +61,135 @@ export default function Home() {
             alt={`${siteConfig.name} seal`}
           />
           <div className="max-w-4xl">
-            <h1>
-              <span
-                data-enter
-                className="band-title font-display-mr block text-[clamp(2.6rem,8vw,4.75rem)] leading-none"
-              >
-                {siteConfig.taglineMr}
-              </span>
-              <span
-                data-enter="follow"
-                className="band-text font-display-en mt-2 block text-[clamp(1.5rem,3vw,2.25rem)] font-medium leading-tight"
-              >
-                {siteConfig.taglineEn}
-              </span>
-            </h1>
-            <p data-enter="follow" className="band-text mt-3 text-base">
+            <Heading
+              as="h1"
+              size="display"
+              titleMr={siteConfig.taglineMr}
+              title={siteConfig.taglineEn}
+            />
+            <Reveal as="p" follow className="band-text mt-3 text-base">
               {established} · {siteConfig.contact.city}
-            </p>
+            </Reveal>
             {ourWork && (
-              <Link
-                href={ourWork.href}
-                data-enter="follow"
-                className="link-rule link-rule-on-navy mt-2"
-              >
-                {ourWork.labelMr} · {ourWork.label}
-              </Link>
+              <Reveal follow>
+                <Link href={ourWork.href} className="link-rule link-rule-on-navy mt-2">
+                  {ourWork.labelMr} · {ourWork.label}
+                </Link>
+              </Reveal>
             )}
           </div>
         </div>
-      </CoverBand>
+      </Section>
 
-      {ongoingEvent ? (
-        <section className="surface-paper">
-          <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <p data-enter className="text-sm font-medium text-brand-saffron-text">
-              {ongoingEvent.dateLabel} · {ongoingEvent.timeLabel} · {ongoingEvent.location}
-            </p>
-            <h2 className="mt-4 max-w-3xl">
-              <span
-                data-enter
-                className="font-display-mr block text-[clamp(1.8rem,4vw,2.6rem)] leading-tight text-brand-navy"
-              >
-                {ongoingEvent.titleMr}
-              </span>
-              <span
-                data-enter="follow"
-                className="font-display-en mt-2 block text-2xl font-medium leading-tight text-ink"
-              >
-                {ongoingEvent.title}
-              </span>
-            </h2>
-            <div
-              data-enter="follow"
-              className="font-marathi mt-6 max-w-3xl space-y-3 text-lg leading-9 sm:text-xl sm:leading-10"
-            >
-              {ongoingEvent.intro.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-            {ongoingEvent.flyer && (
-              <div className="mt-6 max-w-xl border border-rule bg-paper-deep">
-                <ContentImage
-                  src={ongoingEvent.flyer}
-                  alt={ongoingEvent.title}
-                  sizes="(max-width: 768px) 100vw, 36rem"
-                />
-              </div>
-            )}
-            <div
-              data-enter="follow"
-              className="font-marathi mt-6 max-w-3xl space-y-3 text-lg leading-9 sm:text-xl sm:leading-10"
-            >
-              {ongoingEvent.appeal.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-            <p
-              data-enter="follow"
-              className="font-marathi mt-6 max-w-3xl text-lg leading-9 text-brand-navy sm:text-xl sm:leading-10"
-            >
-              {ongoingEvent.tagline}
-            </p>
-          </div>
-        </section>
-      ) : latest ? (
-        <section className="surface-paper">
-          <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <p data-enter className="text-sm font-medium text-brand-saffron-text">
-              {latest.dateLabel}
-            </p>
-            {latest.location && (
-              <p data-enter="follow" className="mt-2 text-ink-soft">
-                {latest.location}
-              </p>
-            )}
-            <h2 className="mt-4 max-w-3xl">
-              {latest.titleMr && (
-                <span
-                  data-enter
-                  className="font-display-mr block text-[clamp(1.8rem,4vw,2.6rem)] leading-tight text-brand-navy"
-                >
-                  {latest.titleMr}
-                </span>
+      {latest && (
+        <Section tone="paper">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="min-w-0">
+              <Reveal as="p" className="text-sm font-medium text-brand-saffron-text">
+                {latest.dateLabel}
+              </Reveal>
+              {latest.location && (
+                <Reveal as="p" follow className="mt-2 text-ink-soft">
+                  {latest.location}
+                </Reveal>
               )}
-              <span
-                data-enter="follow"
-                className="font-display-en mt-2 block text-2xl font-medium leading-tight text-ink"
-              >
-                {latest.title}
-              </span>
-            </h2>
-            {latest.description[0] && (
-              <p
-                data-enter="follow"
-                className="font-marathi mt-4 max-w-3xl text-lg leading-9 sm:text-xl sm:leading-10"
-              >
-                {latest.description[0]}
-              </p>
-            )}
-            <div className={`mt-6 ${visitFrame(latest.photo)}`}>
-              <ContentImage
-                src={latest.photo}
-                alt={latest.title}
-                sizes="(max-width: 1024px) 100vw, 52rem"
-                fit={latest.photoFit ?? "contain"}
-                position={latest.photoPosition}
+              <Heading
+                size="section"
+                titleMr={latest.titleMr}
+                title={latest.title}
+                className="mt-4 max-w-3xl"
               />
+              {latest.description[0] && (
+                <Reveal
+                  as="p"
+                  follow
+                  className="font-marathi mt-4 max-w-3xl text-lg leading-9 sm:text-xl sm:leading-10"
+                >
+                  {latest.description[0]}
+                </Reveal>
+              )}
+              <Link href={`/our-work/${latest.id}`} className="link-rule mt-4">
+                आमचे कार्य · Read this visit
+              </Link>
             </div>
-            <Link href={`/our-work#${latest.id}`} data-enter="follow" className="link-rule mt-4">
-              आमचे कार्य · Read this visit
-            </Link>
+            {latest.photo && (
+              <Reveal image className={photoFrame(latest.photo)}>
+                <ContentImage
+                  src={latest.photo}
+                  alt={latest.title}
+                  sizes="(max-width: 1023px) 100vw, 40rem"
+                  position={latest.photoPosition}
+                />
+              </Reveal>
+            )}
           </div>
-        </section>
-      ) : null}
-
-      <section className="surface-ink border-t border-white/20">
-        <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <h2>
-            <span data-enter className="font-display-mr block text-3xl text-white">
-              आमचे कार्यक्षेत्र
-            </span>
-            <span
-              data-enter="follow"
-              className="font-display-en mt-1 block text-2xl font-medium text-white"
-            >
-              Areas of work
-            </span>
-          </h2>
-          <ul data-enter="follow" className="mt-8 border-t border-white/20">
-            {focusAreas.map((area) => (
-              <li
-                key={area.id}
-                className="flex min-w-0 gap-3 border-b border-white/20 py-5"
-              >
-                <span className="w-1 shrink-0 bg-brand-green" aria-hidden="true" />
-                <div className="min-w-0">
-                  <p className="font-display-mr text-[clamp(1.6rem,3vw,2rem)] leading-tight text-white">
-                    {area.labelMr}
-                  </p>
-                  <p className="mt-1 text-white">{area.label}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="surface-paper-deep">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-1 px-4 py-12 sm:px-6 lg:px-8">
-          {ourWork && (
-            <Link href={ourWork.href} data-enter className="link-rule">
-              {ourWork.labelMr} · {ourWork.label}
-            </Link>
-          )}
-          {gallery && (
-            <Link href={gallery.href} data-enter="follow" className="link-rule">
-              {gallery.labelMr} · {gallery.label}
-            </Link>
-          )}
-        </div>
-      </section>
-
-      {upcomingEvents.length > 0 && (
-        <section className="surface-paper">
-          <div className="mx-auto w-full max-w-7xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
-            {upcomingEvents.map((upcoming) => (
-            <article key={upcoming.id} className="max-w-3xl">
-              {upcoming.dateLabel && (
-                <p data-enter className="text-sm font-medium text-brand-saffron-text">
-                  {upcoming.dateLabel}
-                </p>
-              )}
-              <h2 className={upcoming.dateLabel ? "mt-2" : undefined}>
-                {upcoming.titleMr && (
-                  <span
-                    data-enter
-                    className="font-display-mr block text-2xl leading-tight text-brand-navy"
-                  >
-                    {upcoming.titleMr}
-                  </span>
-                )}
-                <span
-                  data-enter="follow"
-                  className="font-display-en mt-1 block text-xl font-medium text-ink"
-                >
-                  {upcoming.title}
-                </span>
-              </h2>
-              {upcoming.location && (
-                <p data-enter="follow" className="mt-2 text-ink-soft">
-                  {upcoming.location}
-                </p>
-              )}
-              <p
-                data-enter="follow"
-                className="mt-3 text-lg leading-8 sm:text-xl sm:leading-9"
-              >
-                {upcoming.description}
-              </p>
-              {upcoming.descriptionMr && (
-                <p
-                  data-enter="follow"
-                  className="font-marathi mt-3 text-lg leading-9 sm:text-xl sm:leading-10"
-                >
-                  {upcoming.descriptionMr}
-                </p>
-              )}
-            </article>
-            ))}
-          </div>
-        </section>
+        </Section>
       )}
 
-      <section className="surface-ink border-b border-white/20">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 lg:px-8">
-          <h2>
-            <span data-enter className="font-display-mr block text-3xl text-white">
-              सदस्य व्हा
-            </span>
-            <span
-              data-enter="follow"
-              className="font-display-en mt-1 block text-2xl font-medium text-white"
-            >
-              Join the foundation
-            </span>
-          </h2>
-          <p data-enter="follow" className="max-w-3xl text-base leading-7 text-white">
-            Membership is open to any Indian citizen who agrees with the foundation’s objectives.
-          </p>
-          <p data-enter="follow" className="max-w-3xl text-base leading-7 text-white">
-            {siteConfig.fees.en}
-          </p>
-          <p data-enter="follow" className="font-marathi max-w-3xl text-base leading-8 text-white">
-            {siteConfig.fees.mr}
-          </p>
-          <div data-enter="follow">
-            <JoinLink />
-          </div>
-        </div>
-      </section>
+      <Section tone="navy">
+        <Heading titleMr="आमचे कार्यक्षेत्र" title="Areas of work" />
+        <Reveal as="ul" follow className="mt-8 grid grid-cols-3 gap-2 sm:gap-6">
+          {counters.map((counter) => (
+            <li key={counter.label} className="min-w-0 border-t-2 border-brand-gold pt-3">
+              <p className="font-display-en text-[clamp(2rem,7vw,3.5rem)] font-medium leading-none text-white">
+                <Counter value={counter.value} devanagari />
+              </p>
+              <p className="font-display-mr mt-2 text-base leading-tight text-white sm:text-lg">
+                {counter.labelMr}
+              </p>
+              <p className="text-sm leading-snug text-white">{counter.label}</p>
+            </li>
+          ))}
+        </Reveal>
+        <Reveal follow className="mt-8">
+          <FocusAreas />
+        </Reveal>
+      </Section>
+
+      {upcomingEvents.length > 0 && (
+        <Section tone="paper">
+          <Heading titleMr="आगामी उपक्रम" title="Upcoming" />
+          <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {upcomingEvents.map((upcoming) => (
+              <Reveal
+                as="li"
+                key={upcoming.id}
+                className="min-w-0 border border-rule bg-paper-deep p-5"
+              >
+                {upcoming.dateLabel && (
+                  <p className="text-sm font-medium text-brand-saffron-text">
+                    {upcoming.dateLabel}
+                  </p>
+                )}
+                <Heading
+                  size="card"
+                  titleMr={upcoming.titleMr}
+                  title={upcoming.title}
+                  className="mt-2"
+                />
+                {upcoming.location && <p className="mt-2 text-ink-soft">{upcoming.location}</p>}
+                {upcoming.summary && (
+                  <p className="mt-3 text-base leading-7">{upcoming.summary}</p>
+                )}
+                {upcoming.summaryMr && (
+                  <p className="font-marathi mt-3 text-lg leading-9">{upcoming.summaryMr}</p>
+                )}
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+      )}
+
+      <Section tone="paper-deep">
+        <Heading titleMr="सदस्य व्हा" title="Join the foundation" />
+        <Reveal as="p" follow className="mt-5 max-w-3xl text-base leading-7">
+          Membership is open to any Indian citizen who agrees with the foundation’s objectives.
+        </Reveal>
+        <Reveal follow className="mt-6 flex max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row">
+          <JoinLink />
+          <DonateButton />
+        </Reveal>
+      </Section>
     </>
   );
 }

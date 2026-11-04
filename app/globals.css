@@ -89,8 +89,7 @@ body {
   --band-rule: var(--color-brand-gold-ink);
 }
 
-.surface-ink,
-.surface-photo {
+.surface-ink {
   color: #fff;
   --band-title: #fff;
   --band-text: #fff;
@@ -100,22 +99,6 @@ body {
 
 .surface-ink {
   background-color: var(--color-brand-navy);
-}
-
-.surface-photo {
-  background-color: var(--color-brand-navy);
-  min-height: 70dvh;
-}
-
-.band-screen {
-  min-height: 70dvh;
-}
-
-@media (min-width: 768px) {
-  .surface-photo,
-  .band-screen {
-    min-height: calc(100dvh - var(--header-offset));
-  }
 }
 
 /*
@@ -149,7 +132,6 @@ body {
 }
 
 .surface-ink :focus-visible,
-.surface-photo :focus-visible,
 .focus-gold:focus-visible {
   outline: 2px solid var(--color-brand-gold);
   outline-offset: 3px;
@@ -165,7 +147,24 @@ body {
   outline-offset: 3px;
 }
 
+/*
+  Motion. transform and opacity only, once per element.
+  The JavaScript adds .is-entered; with no JavaScript or reduced motion the content just shows.
+  Never more than one effect per block.
+*/
 @keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes enter-rise-lg {
   from {
     opacity: 0;
     transform: translateY(12px);
@@ -174,6 +173,49 @@ body {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes enter-image {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bg-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bg-drift {
+  from {
+    transform: translateY(-24px);
+  }
+
+  to {
+    transform: translateY(24px);
+  }
+}
+
+/* Background photographs: phones use the portrait crop point, wider screens the wide one. */
+.bg-img {
+  object-position: var(--pos-narrow, center);
+}
+
+@media (min-width: 768px) {
+  .bg-img {
+    object-position: var(--pos-wide, center);
   }
 }
 
@@ -187,6 +229,56 @@ body {
 
   html.motion-ready [data-enter="follow"].is-entered {
     animation-delay: 120ms;
+  }
+
+  html.motion-ready [data-enter="image"].is-entered {
+    animation-name: enter-image;
+    animation-duration: 700ms;
+  }
+
+  /* One slow pass over the opening photograph. The layer is clipped by its parent. */
+  .bg-zoom {
+    animation: bg-zoom 14s ease-out both;
+  }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  html.motion-ready [data-enter].is-entered {
+    animation-name: enter-rise-lg;
+  }
+
+  html.motion-ready [data-enter="image"].is-entered {
+    animation-name: enter-image;
+  }
+}
+
+/* Large screens with a pointer only: scroll drift on photograph bands, no JavaScript. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .bg-parallax {
+      inset: -32px 0;
+      animation: bg-drift linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+/* Cards. Zoom only where there is a real pointer; touch taps go straight through. */
+.card-link {
+  transition: border-color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-link:hover {
+    border-color: var(--color-brand-gold-ink);
+  }
+
+  .card-zoom > * {
+    transition: transform 150ms ease;
+  }
+
+  .card-link:hover .card-zoom > * {
+    transform: scale(1.03);
   }
 }
 

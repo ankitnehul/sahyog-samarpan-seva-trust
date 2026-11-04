@@ -2,10 +2,17 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import ContentImage from "@/components/ContentImage";
+import Heading from "@/components/Heading";
 import { spansGalleryColumns } from "@/lib/image-frame";
 import type { GalleryAlbum, GalleryImage } from "@/types";
 
-export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
+interface GalleryAlbumsProps {
+  albums: GalleryAlbum[];
+  /** Show each album's heading. An event page already has its own. */
+  headings?: boolean;
+}
+
+export default function GalleryAlbums({ albums, headings = true }: GalleryAlbumsProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -24,6 +31,13 @@ export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
   }, [active]);
 
   useEffect(() => {
+    document.body.style.overflow = active ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [active]);
+
+  useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     const onClose = () => {
@@ -36,25 +50,18 @@ export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-7xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl space-y-16 px-4 py-12 sm:px-6 md:py-20 lg:px-8">
         {albums.map((album) => (
           <section key={album.id} id={album.id}>
-            <h2 data-enter>
-              <span className="font-display-mr block text-[clamp(1.75rem,4vw,2.25rem)] leading-tight text-brand-navy">
-                {album.titleMr}
-              </span>
-              <span className="font-display-en mt-1 block text-2xl font-medium text-ink">
-                {album.title}
-              </span>
-            </h2>
-            <ul className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {headings && <Heading titleMr={album.titleMr} title={album.title} />}
+            <ul className={`${headings ? "mt-6 " : ""}grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3`}>
               {album.images.map((image) => {
                 const name = image.captionMr ?? image.alt;
                 return (
                   <li
                     key={image.id}
                     className={
-                      spansGalleryColumns(image.src) ? "min-w-0 md:col-span-2" : "min-w-0"
+                      spansGalleryColumns(image.src) ? "min-w-0 sm:col-span-2" : "min-w-0"
                     }
                   >
                     <figure className="border border-rule bg-paper">
@@ -99,16 +106,16 @@ export default function GalleryAlbums({ albums }: { albums: GalleryAlbum[] }) {
       <dialog
         ref={dialogRef}
         aria-labelledby={active ? titleId : undefined}
-        className="m-auto max-h-[calc(100dvh-2rem)] w-[min(100vw-2rem,56rem)] max-w-none overflow-y-auto border border-rule bg-paper p-0 text-ink backdrop:bg-brand-navy/70"
+        className="m-0 h-dvh max-h-none w-dvw max-w-none overflow-y-auto border-0 bg-paper p-0 text-ink backdrop:bg-brand-navy/70 sm:m-auto sm:h-auto sm:max-h-[calc(100dvh-2rem)] sm:w-[min(100vw-2rem,56rem)] sm:border sm:border-rule"
       >
         {active && (
           <div>
-            <div className="flex justify-end border-b border-rule px-4">
+            <div className="flex justify-end border-b border-rule px-4 pt-[env(safe-area-inset-top)]">
               <button
                 ref={closeRef}
                 type="button"
                 onClick={() => setActive(null)}
-                className="control-close inline-flex min-h-11 items-center text-brand-navy"
+                className="control-close inline-flex min-h-11 min-w-11 items-center justify-center text-brand-navy"
               >
                 Close
               </button>

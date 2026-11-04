@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
+import DonateButton from "@/components/DonateButton";
 import JoinLink from "@/components/JoinLink";
 import PageHeading from "@/components/PageHeading";
 import { siteConfig } from "@/data/site";
@@ -89,10 +90,34 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
         <section className="grid gap-4 py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
           <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
             ३
+          </p>
+          <div>
+            <h2>
+              <span data-enter className="font-display-mr block text-3xl text-brand-navy">
+                देणगी
+              </span>
+              <span
+                data-enter="follow"
+                className="font-display-en mt-1 block text-2xl font-medium text-ink"
+              >
+                Donate
+              </span>
+            </h2>
+            <div data-enter="follow" className="mt-5 max-w-sm">
+              <DonateButton fullWidth />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+        <section className="grid gap-4 border-t border-rule py-8 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8">
+          <p className="font-display-mr text-4xl leading-none text-brand-saffron-text" aria-hidden="true">
+            ४
           </p>
           <div>
           <h2>
