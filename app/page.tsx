@@ -1,6 +1,5 @@
 import Link from "next/link";
 import ContentImage from "@/components/ContentImage";
-import Counter from "@/components/Counter";
 import DonateButton from "@/components/DonateButton";
 import FocusAreas from "@/components/FocusAreas";
 import Heading from "@/components/Heading";
@@ -9,7 +8,6 @@ import Reveal from "@/components/Reveal";
 import Section from "@/components/Section";
 import Seal from "@/components/Seal";
 import { ongoingEvent, upcomingEvents, workEvents } from "@/data/events";
-import { galleryAlbums } from "@/data/gallery";
 import { siteConfig } from "@/data/site";
 import { imageFrame } from "@/lib/image-frame";
 import { toDevanagariDigits } from "@/lib/numerals";
@@ -23,22 +21,6 @@ export default function Home() {
   const latest = ongoingEvent ?? workEvents[0];
   const ourWork = siteConfig.nav.find((item) => item.href === "/our-work");
   const established = toDevanagariDigits(siteConfig.establishedYear);
-
-  // Numbers that come from the data itself. Nothing here is typed in by hand.
-  const eventsHeld = workEvents.length;
-  const yearsActive = new Date().getFullYear() - siteConfig.establishedYear;
-  const photographs = new Set(
-    [
-      ...workEvents.map((event) => event.photo),
-      ...galleryAlbums.flatMap((album) => album.images.map((image) => image.src)),
-    ].filter(Boolean),
-  ).size;
-
-  const counters = [
-    { value: eventsHeld, labelMr: "उपक्रम", label: "Events held" },
-    { value: yearsActive, labelMr: "वर्षांची सेवा", label: "Years of seva" },
-    { value: photographs, labelMr: "छायाचित्रे", label: "Photographs" },
-  ];
 
   return (
     <>
@@ -128,19 +110,6 @@ export default function Home() {
 
       <Section tone="navy">
         <Heading titleMr="आमचे कार्यक्षेत्र" title="Areas of work" />
-        <Reveal as="ul" follow className="mt-8 grid grid-cols-3 gap-2 sm:gap-6">
-          {counters.map((counter) => (
-            <li key={counter.label} className="min-w-0 border-t-2 border-brand-gold pt-3">
-              <p className="font-display-en text-[clamp(2rem,7vw,3.5rem)] font-medium leading-none text-white">
-                <Counter value={counter.value} devanagari />
-              </p>
-              <p className="font-display-mr mt-2 text-base leading-tight text-white sm:text-lg">
-                {counter.labelMr}
-              </p>
-              <p className="text-sm leading-snug text-white">{counter.label}</p>
-            </li>
-          ))}
-        </Reveal>
         <Reveal follow className="mt-8">
           <FocusAreas />
         </Reveal>
